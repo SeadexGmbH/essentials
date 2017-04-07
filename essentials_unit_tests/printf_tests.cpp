@@ -9,7 +9,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "sxprintf.hpp"
+#include "essentials/sxprintf.hpp"
 
 
 BOOST_AUTO_TEST_SUITE( sxprintf_test )

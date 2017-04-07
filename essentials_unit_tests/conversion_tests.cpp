@@ -9,7 +9,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "conversion.hpp"
+#include "essentials/conversion.hpp"
 
 BOOST_AUTO_TEST_SUITE( conversion_tests )
 

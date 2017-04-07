@@ -12,7 +12,7 @@
 #define BOOST_TEST_ALTERNATIVE_INIT_API
 #include <boost/test/unit_test.hpp>
 
-#include "base.hpp"
+#include "essentials/base.hpp"
 
 #ifdef __linux__
 

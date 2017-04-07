@@ -8,32 +8,36 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef VERSION_E55DC329_9A27_4598_928C_1CD8A4AA389E
-#define VERSION_E55DC329_9A27_4598_928C_1CD8A4AA389E
+#ifndef FORMAT_SETTINGS_1D24A599_70E3_42BB_BFE6_46BD94217FAB
+#define FORMAT_SETTINGS_1D24A599_70E3_42BB_BFE6_46BD94217FAB
 
 
-#include "compatibility.hpp"
+#include <string>
+
+#include "compatibility/compatibility.hpp"
 
 
 namespace sxe
 {
 
-
-namespace version
+//!\struct format_settings
+//!\brief Structure containing information for formatting the output of sxprintf.
+struct format_settings SX_FINAL
 {
+	//!\brief Constructor of the structure.
+	format_settings();
 
 
-void log_version();
-
-
-sxe::uint16_t get_major_version();
-sxe::uint16_t get_minor_version();
-sxe::uint16_t get_patch_version();
-sxe::uint16_t get_build_number();
-
-
-}
-
+	std::string format_string_;
+	bool missing_closing_bracket_;
+	bool correct_;
+	bool hex_;
+	bool pad_zeros_;
+	bool places_set_;
+	int places_;
+	bool decimal_places_set_;
+	int decimal_places_;
+};
 
 }
 

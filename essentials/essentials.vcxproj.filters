@@ -21,47 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\base.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\conversion.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\exception.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\exception_template.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\format_settings.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\macro_helpers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sxprintf.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\non_copyable.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\compatibility\chrono.hpp">
-      <Filter>Header Files\compatibility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\compatibility\compatibility.hpp">
-      <Filter>Header Files\compatibility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\compatibility\thread.hpp">
-      <Filter>Header Files\compatibility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\build_number.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\version.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="source\conversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -71,25 +30,69 @@
     <ClCompile Include="source\sxprintf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\version.cpp">
+    <ClCompile Include="source\essentials_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170309.pdf">
+    <Text Include="..\changelog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\license\essentials_Anhang_Appendix_20170406.pdf">
       <Filter>license</Filter>
     </None>
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170309_en.pdf">
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170406.pdf">
       <Filter>license</Filter>
     </None>
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170309.pdf">
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170406_en.pdf">
       <Filter>license</Filter>
     </None>
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170309_en.pdf">
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170406.pdf">
+      <Filter>license</Filter>
+    </None>
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170406_en.pdf">
       <Filter>license</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\changelog.txt" />
+    <ClInclude Include="include\essentials\compatibility\chrono.hpp">
+      <Filter>Header Files\compatibility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\compatibility\compatibility.hpp">
+      <Filter>Header Files\compatibility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\compatibility\thread.hpp">
+      <Filter>Header Files\compatibility</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\build_number.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\conversion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\exception.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\exception_template.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\format_settings.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\macro_helpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\non_copyable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\sxprintf.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\essentials_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
