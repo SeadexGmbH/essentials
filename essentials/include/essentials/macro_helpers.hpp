@@ -27,13 +27,13 @@
 //!\brief Creating a name from a base name and a number with underscore between them.
 #define SELECT( NAME, NUM ) CAT( NAME ## _, NUM )
 
-//!\def GET_COUNT( _ONE, _TWO, _THREE, _FOUR, _FIVE, _SIX, _SEVEN, _EIGHT, _NINE, _TEN, COUNT, ... )
+//!\def GET_COUNT( _ONE, _TWO, _THREE, _FOUR, _FIVE, _SIX, _SEVEN, _EIGHT, _NINE, _TEN, _ELEVEN, _TWELVE, _THIRTEEN, _FOURTEEN, _FIFTEEN, COUNT, ... )
 //!\brief Helper for counting the number of parameters of a macro.
-#define GET_COUNT( _ONE, _TWO, _THREE, _FOUR, _FIVE, _SIX, _SEVEN, _EIGHT, _NINE, _TEN, COUNT, ... ) COUNT
+#define GET_COUNT( _ONE, _TWO, _THREE, _FOUR, _FIVE, _SIX, _SEVEN, _EIGHT, _NINE, _TEN, _ELEVEN, _TWELVE, _THIRTEEN, _FOURTEEN, _FIFTEEN, COUNT, ... ) COUNT
 
 //!\def VA_SIZE( ... )
 //!\brief Count the number of parameters of a macro.
-#define VA_SIZE( ... ) EXPAND( GET_COUNT( __VA_ARGS__, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1 ) )
+#define VA_SIZE( ... ) EXPAND( GET_COUNT( __VA_ARGS__, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1 ) )
 
 //!\def VA_SELECT( NAME, ... )
 //!\brief Selects the correct overloaded macro based on the number of parameters.

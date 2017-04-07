@@ -35,34 +35,35 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\base.hpp" />
-    <ClInclude Include="include\build_number.hpp" />
-    <ClInclude Include="include\compatibility\chrono.hpp" />
-    <ClInclude Include="include\compatibility\compatibility.hpp" />
-    <ClInclude Include="include\compatibility\thread.hpp" />
-    <ClInclude Include="include\conversion.hpp" />
-    <ClInclude Include="include\exception.hpp" />
-    <ClInclude Include="include\exception_template.hpp" />
-    <ClInclude Include="include\format_settings.hpp" />
-    <ClInclude Include="include\macro_helpers.hpp" />
-    <ClInclude Include="include\non_copyable.hpp" />
-    <ClInclude Include="include\sxprintf.hpp" />
-    <ClInclude Include="include\version.hpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="source\conversion.cpp" />
     <ClCompile Include="source\format_settings.cpp" />
     <ClCompile Include="source\sxprintf.cpp" />
-    <ClCompile Include="source\version.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170309.pdf" />
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170309_en.pdf" />
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170309.pdf" />
-    <None Include="..\..\license\Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170309_en.pdf" />
+    <ClCompile Include="source\essentials_version.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\changelog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\license\essentials_Anhang_Appendix_20170406.pdf" />
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170406.pdf" />
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170406_en.pdf" />
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170406.pdf" />
+    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170406_en.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\essentials\base.hpp" />
+    <ClInclude Include="include\essentials\build_number.hpp" />
+    <ClInclude Include="include\essentials\compatibility\chrono.hpp" />
+    <ClInclude Include="include\essentials\compatibility\compatibility.hpp" />
+    <ClInclude Include="include\essentials\compatibility\thread.hpp" />
+    <ClInclude Include="include\essentials\conversion.hpp" />
+    <ClInclude Include="include\essentials\exception.hpp" />
+    <ClInclude Include="include\essentials\exception_template.hpp" />
+    <ClInclude Include="include\essentials\format_settings.hpp" />
+    <ClInclude Include="include\essentials\macro_helpers.hpp" />
+    <ClInclude Include="include\essentials\non_copyable.hpp" />
+    <ClInclude Include="include\essentials\sxprintf.hpp" />
+    <ClInclude Include="include\essentials\essentials_version.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{132F81F8-46DA-49D0-9071-D70BC087B38C}</ProjectGuid>
@@ -171,7 +172,6 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
@@ -191,7 +191,6 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>

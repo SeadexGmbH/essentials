@@ -8,11 +8,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
-#define BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
+#ifndef VERSION_E55DC329_9A27_4598_928C_1CD8A4AA389E
+#define VERSION_E55DC329_9A27_4598_928C_1CD8A4AA389E
 
 
-#include "compatibility.hpp"
+#include "compatibility/compatibility.hpp"
 
 
 namespace sxe
@@ -23,7 +23,13 @@ namespace version
 {
 
 
-	const sxe::uint16_t BUILD_NUMBER( 47 );
+void log_version();
+
+
+sxe::uint16_t get_major_version();
+sxe::uint16_t get_minor_version();
+sxe::uint16_t get_patch_version();
+sxe::uint16_t get_build_number();
 
 
 }

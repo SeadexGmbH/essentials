@@ -3,7 +3,6 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <ESSENTIALS_INCLUDE_PATH>..\essentials\include</ESSENTIALS_INCLUDE_PATH>
-    <ESSENTIALS_COMPATIBILITY_PATH>..\essentials\include\compatibility</ESSENTIALS_COMPATIBILITY_PATH>
     <ESSENTIALS_LIB_PATH>..\$(Platform)\$(Configuration)</ESSENTIALS_LIB_PATH>
   </PropertyGroup>
   <PropertyGroup />
@@ -21,9 +20,6 @@
   <ItemGroup>
     <BuildMacro Include="ESSENTIALS_INCLUDE_PATH">
       <Value>$(ESSENTIALS_INCLUDE_PATH)</Value>
-    </BuildMacro>
-    <BuildMacro Include="ESSENTIALS_COMPATIBILITY_PATH">
-      <Value>$(ESSENTIALS_COMPATIBILITY_PATH)</Value>
     </BuildMacro>
     <BuildMacro Include="ESSENTIALS_LIB_PATH">
       <Value>$(ESSENTIALS_LIB_PATH)</Value>

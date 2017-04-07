@@ -8,36 +8,26 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef FORMAT_SETTINGS_1D24A599_70E3_42BB_BFE6_46BD94217FAB
-#define FORMAT_SETTINGS_1D24A599_70E3_42BB_BFE6_46BD94217FAB
+#ifndef BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
+#define BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
 
 
-#include <string>
-
-#include "compatibility.hpp"
+#include "compatibility/compatibility.hpp"
 
 
 namespace sxe
 {
 
-//!\struct format_settings
-//!\brief Structure containing information for formatting the output of sxprintf.
-struct format_settings SX_FINAL
+
+namespace version
 {
-	//!\brief Constructor of the structure.
-	format_settings();
 
 
-	std::string format_string_;
-	bool missing_closing_bracket_;
-	bool correct_;
-	bool hex_;
-	bool pad_zeros_;
-	bool places_set_;
-	int places_;
-	bool decimal_places_set_;
-	int decimal_places_;
-};
+	const sxe::uint16_t BUILD_NUMBER( 56 );
+
+
+}
+
 
 }
 
