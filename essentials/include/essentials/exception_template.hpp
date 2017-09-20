@@ -14,7 +14,7 @@
 
 #include <exception>
 
-#include "compatibility.hpp"
+#include "compatibility/compatibility.hpp"
 #include "sxprintf.hpp"
 
 

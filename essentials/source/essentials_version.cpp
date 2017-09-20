@@ -7,25 +7,67 @@
 //                                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "format_settings.hpp"
+#include "essentials_version.hpp"
+
+#include <iostream>
+
+#include "compatibility/compatibility.hpp"
+#include "build_number.hpp"
+#include "sxprintf.hpp"
 
 
 namespace sxe
 {
 
 
-format_settings::format_settings():
-	format_string_(),
-	missing_closing_bracket_( false ),
-	correct_( false ),
-	hex_( false ),
-	pad_zeros_( false ),
-	places_set_( false ),
-	places_( 0 ),
-	decimal_places_set_( false ),
-	decimal_places_( 0 )
+namespace version
 {
-	// Nothing to do...
+
+
+namespace
+{
+
+
+const sxe::uint16_t VERSION_MAJOR( 1 );
+const sxe::uint16_t VERSION_MINOR( 1 );
+const sxe::uint16_t VERSION_PATCH( 0 );
+
+
+}
+
+
+// cppcheck-suppress unusedFunction
+void log_version()
+{
+	std::cout << sxe::sxprintf( "essentials library version %.%.%.%.", get_major_version(),
+		get_minor_version(), get_patch_version(), get_build_number() ) << std::endl;
+}
+
+
+sxe::uint16_t get_major_version()
+{
+	return( VERSION_MAJOR );
+}
+
+
+sxe::uint16_t get_minor_version()
+{
+	return( VERSION_MINOR );
+}
+
+
+sxe::uint16_t get_patch_version()
+{
+	return( VERSION_PATCH );
+}
+
+
+sxe::uint16_t get_build_number()
+{
+	return( BUILD_NUMBER );
+}
+
+
 }
 
 
