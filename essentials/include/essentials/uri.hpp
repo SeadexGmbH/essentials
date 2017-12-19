@@ -14,7 +14,7 @@
 
 #include <deque>
 
-#include "compatibility/compatibility.hpp"
+#include "essentials/compatibility/compatibility.hpp"
 
 
 namespace sxe
