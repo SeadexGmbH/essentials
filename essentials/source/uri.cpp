@@ -8,12 +8,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#include "uri.hpp"
+#include "essentials/uri.hpp"
 
 #include <vector>
 #include <sstream>
 
-#include "base.hpp"
+#include "essentials/base.hpp"
 
 
 namespace sxe

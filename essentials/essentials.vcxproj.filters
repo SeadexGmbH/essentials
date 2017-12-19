@@ -100,5 +100,8 @@
     <ClInclude Include="include\essentials\uri.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\essentials\compatibility\essentials_backward_compatibility.hpp">
+      <Filter>Header Files\compatibility</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
