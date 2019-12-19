@@ -21,7 +21,7 @@
 	#include <boost/variant.hpp>
 #endif
 
-#include "compatibility.hpp"
+#include "compatibility/compatibility.hpp"
 #include "format_settings.hpp"
 
 

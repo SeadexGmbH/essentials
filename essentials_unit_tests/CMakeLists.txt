@@ -4,7 +4,7 @@ project(essentials_unit_tests)
 
 set(CMAKE_VERBOSE_MAKEFILE, 1)
 
-set(HEADER_FILES "./../essentials/include/*.hpp" "./../essentials/include/compatibility/*.hpp")
+set(HEADER_FILES "./../essentials/include/essentials/*.hpp" "./../essentials/include/essentials/compatibility/*.hpp")
 file(GLOB essentials_unit_tests_SRC "./*.cpp" ${HEADER_FILES})
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -107,7 +107,7 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${extra_flags}")
 
 add_executable(essentials_unit_tests ${essentials_unit_tests_SRC})
-include_directories("./../essentials/include/compatibility" "./../essentials/include")
+include_directories("./../essentials/include")
 
 #using boost
 find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)

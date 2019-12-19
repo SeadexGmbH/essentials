@@ -4,7 +4,7 @@ project(essentials)
 
 set(CMAKE_VERBOSE_MAKEFILE, 1)
 
-file(GLOB essentials_SRC "include/*.hpp" "include/compatibility/*.hpp" "source/*.cpp")
+file(GLOB essentials_SRC "include/essentials/*.hpp" "include/essentials/compatibility/*.hpp" "source/*.cpp")
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -124,7 +124,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 		
 endif()
 
-include_directories("./include" "./include/compatibility")
+include_directories("./include/essentials" "./include/essentials/compatibility")
 
 # for release
 if( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" )	

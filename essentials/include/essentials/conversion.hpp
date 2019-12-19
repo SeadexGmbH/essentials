@@ -12,7 +12,7 @@
 #define CONVERSION_99CAC61B_DD8A_43E2_8612_0F42873A5741
 
 
-#include "compatibility.hpp"
+#include "compatibility/compatibility.hpp"
 
 
 namespace sxe
