@@ -7,13 +7,13 @@
 //                                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "essentials_version.hpp"
+#include "essentials/essentials_version.hpp"
 
 #include <iostream>
 
-#include "compatibility/compatibility.hpp"
-#include "build_number.hpp"
-#include "sxprintf.hpp"
+#include "essentials/compatibility/compatibility.hpp"
+#include "essentials/build_number.hpp"
+#include "essentials/sxprintf.hpp"
 
 
 namespace sxe
@@ -29,7 +29,7 @@ namespace
 
 
 const sxe::uint16_t VERSION_MAJOR( 1 );
-const sxe::uint16_t VERSION_MINOR( 1 );
+const sxe::uint16_t VERSION_MINOR( 2 );
 const sxe::uint16_t VERSION_PATCH( 0 );
 
 

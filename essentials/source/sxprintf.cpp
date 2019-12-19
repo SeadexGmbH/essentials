@@ -8,12 +8,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#include "sxprintf.hpp"
+#include "essentials/sxprintf.hpp"
 
 #include <cctype>
 
-#include "base.hpp"
-#include "conversion.hpp"
+#include "essentials/base.hpp"
+#include "essentials/conversion.hpp"
 
 
 namespace sxe
