@@ -33,6 +33,9 @@
     <ClCompile Include="source\essentials_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\uri.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\changelog.txt" />
@@ -92,6 +95,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\essentials\essentials_version.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\uri.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

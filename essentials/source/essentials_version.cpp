@@ -7,12 +7,13 @@
 //                                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include "essentials_version.hpp"
 
-#ifndef BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
-#define BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
-
+#include <iostream>
 
 #include "compatibility/compatibility.hpp"
+#include "build_number.hpp"
+#include "sxprintf.hpp"
 
 
 namespace sxe
@@ -23,13 +24,51 @@ namespace version
 {
 
 
-	const sxe::uint16_t BUILD_NUMBER( 66 );
+namespace
+{
 
 
+const sxe::uint16_t VERSION_MAJOR( 1 );
+const sxe::uint16_t VERSION_MINOR( 1 );
+const sxe::uint16_t VERSION_PATCH( 0 );
+
+
+}
+
+
+// cppcheck-suppress unusedFunction
+void log_version()
+{
+	std::cout << sxe::sxprintf( "essentials library version %.%.%.%.", get_major_version(),
+		get_minor_version(), get_patch_version(), get_build_number() ) << std::endl;
+}
+
+
+sxe::uint16_t get_major_version()
+{
+	return( VERSION_MAJOR );
+}
+
+
+sxe::uint16_t get_minor_version()
+{
+	return( VERSION_MINOR );
+}
+
+
+sxe::uint16_t get_patch_version()
+{
+	return( VERSION_PATCH );
+}
+
+
+sxe::uint16_t get_build_number()
+{
+	return( BUILD_NUMBER );
 }
 
 
 }
 
 
-#endif
+}

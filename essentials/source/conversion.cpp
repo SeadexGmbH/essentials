@@ -11,6 +11,8 @@
 #include "conversion.hpp"
 
 #include <stdexcept>
+#include <algorithm>
+#include <cctype>
 
 #ifndef SX_CPP03_BOOST
 	#include <string>
@@ -77,6 +79,24 @@ std::string to_string( const int _value )
 	ostr << _value;
 	return( ostr.str() );
 #endif
+}
+
+
+// cppcheck-suppress unusedFunction
+std::string to_upper( const std::string& _value )
+{
+	std::string value_caps = _value;
+	std::transform( value_caps.begin(), value_caps.end(), value_caps.begin(), static_cast<int(*)(int)>( ::std::toupper ) );
+	return( value_caps );
+}
+
+
+// cppcheck-suppress unusedFunction
+std::string to_lower( const std::string& _value )
+{
+	std::string value_to_lower = _value;
+	std::transform( value_to_lower.begin(), value_to_lower.end(), value_to_lower.begin(), static_cast<int(*)(int)>( ::std::tolower ) );
+	return( value_to_lower );
 }
 
 

@@ -65,4 +65,31 @@ BOOST_AUTO_TEST_CASE( convertion_test_int_to_string_min )
 }
 
 
+BOOST_AUTO_TEST_CASE( convertion_test_to_upper_1 )
+{
+	const std::string converted = sxe::to_upper( "hello yasmine Lib 1.2.0" );
+	BOOST_CHECK_EQUAL( converted, "HELLO YASMINE LIB 1.2.0" );
+}
+
+
+BOOST_AUTO_TEST_CASE( convertion_test_to_upper_2 )
+{
+	const std::string converted = sxe::to_upper( "heLLo YaSmIne Lib 1.2.0" );
+	BOOST_CHECK_EQUAL( converted, "HELLO YASMINE LIB 1.2.0" );
+}
+
+
+BOOST_AUTO_TEST_CASE( convertion_test_to_lower_1 )
+{
+	const std::string converted = sxe::to_lower( "HELLO YASMINE LIB 1.2.0" );
+	BOOST_CHECK_EQUAL( converted, "hello yasmine lib 1.2.0" );
+}
+
+
+BOOST_AUTO_TEST_CASE( convertion_test_to_lower_2 )
+{
+	const std::string converted = sxe::to_lower( "HELLO YASMINE LIB 1.2.0 TesT_2" );
+	BOOST_CHECK_EQUAL( converted, "hello yasmine lib 1.2.0 test_2" );
+}
+
 BOOST_AUTO_TEST_SUITE_END()
