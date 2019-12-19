@@ -8,28 +8,24 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
-#define BUILD_NUMBER_0A2C7A7F_B3EC_443A_BDD8_652E7DEFC433
+#ifndef ESSENTIALS_BACKWARD_COMPATIBILITY_EBFE3698_30C0_456A_A146_1F081011CB49
+#define ESSENTIALS_BACKWARD_COMPATIBILITY_EBFE3698_30C0_456A_A146_1F081011CB49
 
 
-#include "compatibility/compatibility.hpp"
+#ifdef Y_NO_STD_MAKE_UNIQUE
+#define SX_NO_STD_MAKE_UNIQUE
+#endif
 
 
-namespace sxe
-{
+#ifdef Y_CPP03_BOOST
+#define SX_CPP03_BOOST
+#endif
 
 
-namespace version
-{
-
-
-	const sxe::uint16_t BUILD_NUMBER( 96 );
-
-
-}
-
-
-}
+#define Y_UNIQUE_PTR SX_UNIQUE_PTR
+#define Y_MAKE_UNIQUE SX_MAKE_UNIQUE
+#define Y_MAKE_SHARED SX_MAKE_SHARED
+#define Y_UNUSED_PARAMETER SX_UNUSED_PARAMETER
 
 
 #endif
