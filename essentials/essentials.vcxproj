@@ -262,7 +262,6 @@
     <Import Project="..\Build\debug_info.props" />
     <Import Project="..\Build\c++03.props" />
     <Import Project="..\build\use_boost_externals.props" />
-    <Import Project="..\build\use_boost_as_external.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release - VS 2017|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -282,7 +281,6 @@
     <Import Project="..\Build\essentials.props" />
     <Import Project="..\Build\c++03.props" />
     <Import Project="..\build\use_boost_externals.props" />
-    <Import Project="..\build\use_boost_as_external.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug - VS 2017|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -311,7 +309,6 @@
     <Import Project="..\Build\debug_info.props" />
     <Import Project="..\Build\c++03.props" />
     <Import Project="..\build\use_boost_externals.props" />
-    <Import Project="..\build\use_boost_as_external.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release - VS 2017|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -331,7 +328,6 @@
     <Import Project="..\Build\essentials.props" />
     <Import Project="..\Build\c++03.props" />
     <Import Project="..\build\use_boost_externals.props" />
-    <Import Project="..\build\use_boost_as_external.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
