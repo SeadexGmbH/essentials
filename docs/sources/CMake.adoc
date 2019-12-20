@@ -1,0 +1,111 @@
+==== CMake
+
+The build with CMake is currently tested with Linux (Debian, gcc) and for Windows (Microsoft Visual Studio). 
+
+The following were used: 
+
+* Debian 11
+* gcc 10.2.1
+
+The _CMakeFileLists.txt_ files are located in the solution directory, the essentials project directory, the examples directory, and the directory of the unit tests project. 
+
+===== Generating with CMake
+
+Create a folder where the CMake output and the results of the build are supposed to be stored. For example, create the _cmake_build_ folder. 
+
+====== Linux
+
+In a terminal go to the directory into which you extracted essentials and run the following commands: 
+
+[source]
+----
+cmake -G "Unix Makefiles" .
+make VERBOSE=1
+----
+
+*Choosing the architecture*
+
+The default build architecture is x86. To choose the x64 architecture for the Linux build, we need to add the value *m64* to the *CMAKE_CXX_FLAGS* variable: 
+
+[source]
+----
+cmake -G "Unix Makefiles" -DCMAKE_CXX_FLAGS=-m64 ..
+----
+
+====== Windows
+
+Open a console, switch into the folder you've created (e.g. _cmake_build_) and run the command (for a release build): 
+[source]
+----
+cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_FLAGS=-m64 -DCMAKE_BUILD_TYPE=Release ..
+----
+
+Under Windows, as default, CMake uses the newest Visual Studio installation. But a compiler can be used by explicitly specifying it on calling CMake. 
+
+By running the following command (among other information) the generators that are available on your platform will be listed: 
+[source]
+----
+cmake --help
+----
+
+For example, using Visual Studio 2013 as a generator, the command will look like this: 
+[source]
+----
+cmake -G "Visual Studio 12 2013" -DCMAKE_BUILD_TYPE=Release ..
+----
+
+*Choosing the architecture*
+
+The architecture defaults to x86. To switch to x64 just specify the x64 platform after the generator, according to the following example: 
+[source]
+----
+cmake -G "Visual Studio 14 2015 x64" -DCMAKE_BUILD_TYPE=Release ..
+----
+
+*Release/Debug*
+
+Choosing between release and debug builds is the same for both Windows and Linux. On invoking CMake, pass the parameter *-DCMAKE_BUILD_TYPE* as in the following examples: 
+
+[source]
+----
+# for Windows
+cmake -G "Visual Studio 14 2015 x64" -DCMAKE_BUILD_TYPE=Release ..
+cmake -G "Visual Studio 14 2015 x64" -DCMAKE_BUILD_TYPE=Debug ..
+ 
+# for Linux
+cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
+----
+
+*Preprocessor definitions*
+
+Using essentials' preprocessor definitions with CMake is also possible by passing them as parameters in the console/terminal. 
+
+[cols="1,1"]
+|===
+|Definition| Description
+
+|CPP_VERSION=[VALUE]| Sets the standard for the {CPP} compiler. When it is not used, {CPP}11 will be used.
+
+|ESS_USE_NULL_LOGGER=[ON]| When ESS_USE_NULL_LOGGER is defined (no mether what value) a null logger will be used. This means, no logging.
+
+|FMT_LIB_INCLUDE=[VALUE]
+
+FMT_LIB=[VALUE] 
+
+SPDLOG_LIB_INCLUDE=[VALUE] 
+
+SPDLOG_LIB=[VALUE]| To use fmt and spdlog libraries from the user location, all four variables must be used at the same time with the correct paths. For the libs, the library is specified as well (e.g. ".../fmt/lib/fmt.lib").
+|===
+
+
+====== Example
+
+[source]
+----
+# for Windows
+cmake -G "Visual Studio 14 2015 x64" -DESS_USE_NULL_LOGGER=1 ..
+ 
+# for Linux
+cmake -G "Unix Makefiles" -DESS_USE_NULL_LOGGER=1 ..
+----

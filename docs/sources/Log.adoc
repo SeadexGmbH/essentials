@@ -1,0 +1,57 @@
+==== Log
+
+Essentials library supports logging.
+
+===== Log macros
+
+There are 3 macros used to create logs:
+
+* SXE_LOG taking parameters:
+    ** log-level
+    ** message
+    ** [optional] parameter(s)
+
+* SXE_LOG_LOCATED taking parameters:
+    ** log-level
+    ** file
+    ** line
+    ** message
+    ** [optional] parameter(s)
+
+* SXE_LOG_HEX taking parameters:
+    ** log-level
+    ** object
+    ** title
+
+
+====== Log-levels    
+
+The following log levels are supported:
+
+* LL_TRACE
+* LL_DEBUG
+* LL_INFO
+* LL_WARN
+* LL_ERROR
+* LL_FATAL
+* LL_OFF
+
+
+====== Example
+
+There is an example project (logger_example) showing how to initialize and use the logger in the essentials library.
+
+
+A short example of initializing and using the logger:
+====
+[source,cpp]
+----
+auto& logger = sxe::logger::get_instance();
+sxe::logger_manager::get_instance().set_logger( logger );
+logger.set_log_level( LL_ERROR );
+logger.add_std_out_sink();
+logger.add_file_sink( "log.log", 1, 1 * 1024 * 1024 );
+
+SXE_LOG( LL_TRACE, "Hello {}!", "John Doe" );
+----
+====

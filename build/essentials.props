@@ -14,7 +14,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/D "_STL_WARNING_LEVEL=3" %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/D "_STL_WARNING_LEVEL=3" /external:W4 /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link />
     <Link>

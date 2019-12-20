@@ -1,0 +1,5 @@
+==== No copy macro
+
+* *SXE_NO_COPY* deletes the copy constructor and assignment operator of the given class.
+
+* *SXE_NO_ASSIGNMENT_OPERATOR* deletes the assignment operator of the given class.

@@ -45,9 +45,12 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
+#[Ll]og/
+#!*/log/*
 [Ww]in32/
-
+[Dd]ebug -*
+[Rr]elease -*
+reports/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -77,10 +80,13 @@ Generated\ Files/
 *.tmp
 *.tmp_proj
 *_wpftmp.csproj
-*.log
 *.vspscc
 *.vssscc
 .builds
 *.pidb
 *.svclog
 *.scc
+*.log
+
+# Node.js modules
+node_modules

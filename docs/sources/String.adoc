@@ -1,0 +1,6 @@
+==== String
+
+Provides the following string helper functionality:
+
+* *replace all*
+* *split*

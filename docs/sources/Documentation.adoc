@@ -1,0 +1,17 @@
+== Documentation
+
+|===
+|Library| essentials
+|Version| {libversion}
+|===
+
+
+This section contains the Seadex essentials library documentation including the API reference. 
+
+include::Building_essentials.adoc[]
+
+include::Dependencies.adoc[]
+
+include::Features.adoc[]
+
+include::Reference.adoc[]

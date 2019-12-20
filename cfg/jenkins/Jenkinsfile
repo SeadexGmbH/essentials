@@ -1,0 +1,307 @@
+pipeline {
+
+	agent none
+	
+	parameters {
+        booleanParam(name: 'RELEASE_BUILD', defaultValue: false, description: 'When Release is checked, a deployment is performed.')
+		booleanParam(name: 'DOXYGEN', defaultValue: false, description: 'Generate the HTML version of the in-code documentation.')
+		booleanParam(name: 'DOXYGEN_RTF', defaultValue: false, description: 'Generate a RTF version of the in-code documentation.')
+    }
+
+	environment {
+		VERSION = "2.0.0"
+		SOFTWARE_VERSION = "${VERSION}-${env.BUILD_NUMBER}"
+		SOFTWARE_VERSION_STR = "v${SOFTWARE_VERSION}"
+		VERSION_W_BUILD = "${VERSION}.${env.BUILD_NUMBER}"
+    } 
+
+
+	stages {
+		stage('Linux') {
+			
+				agent {
+					docker {
+						registryUrl "${env.SX_DOCKER_REGISTRY}"
+						image 'sx_debian_gcc_ruby_conan:latest'
+						args '-u 0:0 -v /mnt/user/development/ci_ssh:/root/.ssh'
+					}
+				}
+				
+				environment {
+					CONAN_USER_HOME = "${env.WORKSPACE}/"
+					CONAN_NON_INTERACTIVE = 1
+					CONAN_REVISIONS_ENABLED = 1
+				} 
+				
+				stages {
+
+					stage('Check Version') {
+						steps {
+							script {
+								if (params.RELEASE_BUILD == true) {
+									dir("${env.WORKSPACE}/essentials/source/") {
+										println(env.VERSION)
+										def data = readFile(file: 'essentials_version.cpp')
+										def idx1 = data.indexOf('VERSION_MAJOR( ')
+										def idx2 = data.indexOf('VERSION_MINOR( ')
+										def idx3 = data.indexOf('VERSION_PATCH( ')
+										final majorVersion = data.substring(idx1 + 15, idx1 + 16)
+										final minorVersion = data.substring(idx2 + 15, idx2 + 16)
+										final patchVersion = data.substring(idx3 + 15, idx3 + 16)
+										def fileVersion = majorVersion + '.' + minorVersion + '.' + patchVersion
+										println(fileVersion)
+										
+										if (fileVersion != env.VERSION) {								
+											currentBuild.result = "FAILURE"
+											throw new Exception("Version in Jenkinfile is not the same as version in essentials! (" + fileVersion + " != " + env.VERSION + ")")
+										}
+									}
+								}
+							}
+						}
+					}
+				
+					stage ('Conan setup') {
+						steps {
+							dir("${env.WORKSPACE}/cfg/jenkins/linux"){
+								sh 'chmod +x conan.sh'
+								sh "./conan.sh"
+							}							
+						}
+					}
+				
+					stage('Build') {
+						steps { 
+							echo 'Building...'
+								
+							dir("${env.WORKSPACE}"){
+								echo 'Configure cmake...'
+								sh 'rm -rf cmake'
+								sh 'mkdir cmake'
+								sh 'rm -rf cmaked'
+								sh 'mkdir cmaked'
+							}
+							
+							dir("${env.WORKSPACE}/cmake"){
+								sh 'cmake -G "Unix Makefiles" -DCMAKE_CXX_FLAGS=-m64 -DCMAKE_BUILD_TYPE=Release ..'
+								
+								echo 'Building RELEASE with cmake...'
+								sh 'make -j 4 VERBOSE=1'
+
+								stash includes: "bin/*", name: "linux_release_bin"
+								stash includes: "lib/*", name: "linux_release_lib"
+							}
+							
+							dir("${env.WORKSPACE}/cmaked"){
+								sh 'cmake -G "Unix Makefiles" -DCMAKE_CXX_FLAGS=-m64 -DCMAKE_BUILD_TYPE=Debug ..'
+								
+								echo 'Building DEBUG with cmake...'
+								sh 'make -j 4 VERBOSE=1'
+
+								stash includes: "bin/*", name: "linux_debug_bin"
+								stash includes: "lib/*", name: "linux_debug_lib"
+							}
+						}
+					}
+					
+					stage('Checks') {
+						steps {
+							dir("${env.WORKSPACE}"){
+								sh 'mkdir reports'
+								sh 'cppcheck essentials -I include/essentials --enable=all --inline-suppr --inconclusive --xml --xml-version=2 2> ./reports/cppcheck.xml'
+							}
+							
+							dir("${env.WORKSPACE}/reports"){
+								script {
+									def cppCheckIssues = scanForIssues tool: cppCheck(pattern: 'cppcheck.xml')
+									publishIssues issues:[cppCheckIssues]
+								}
+							}
+						}
+					}
+					
+					stage('Test') {
+						steps {
+							echo 'Testing..'
+							dir("${env.WORKSPACE}/cmake/bin"){
+								script {
+									try {
+									sh './essentials_unit_tests --log_format=JUNIT --report_level=no --gtest_output=xml:./../../reports/unit_test_results.xml'
+									} catch (Exception e) {
+										echo 'essentials_unit_tests did not run!!!'
+									}
+								}
+							}
+							
+							dir("${env.WORKSPACE}/reports"){
+								junit 'unit_test_results.xml'
+							}
+						}
+					}
+				}
+		}
+
+		stage('Windows') {
+			agent {
+				label 'windows'
+			}
+			
+			environment {
+				CONAN_USER_HOME = "${env.WORKSPACE}"
+				CONAN_NON_INTERACTIVE = 1
+				CONAN_REVISIONS_ENABLED = 1
+			} 
+			
+			stages {
+			
+				stage ('[Win] Conan setup') {
+					steps {
+						dir("${env.WORKSPACE}/cfg/jenkins/windows"){
+							bat "conan_stage.bat"
+						}
+					}
+				}
+			
+				stage('[Win] Build') {
+					steps { 
+						echo 'Building...'
+							
+						dir("${env.WORKSPACE}"){
+							echo 'Configure cmake...'
+							bat "if exist ./cmake rmdir /s /q ./cmake 2>null"
+							bat "mkdir cmake"									
+							bat "if exist ./cmakeD rmdir /s /q ./cmakeD 2>null"
+							bat "mkdir cmakeD"
+						}
+						
+						dir("${env.WORKSPACE}/cmake"){
+							bat "cmake -G \"Visual Studio 16 2019\" -A x64 -DCMAKE_CXX_FLAGS=-m64 -DCMAKE_BUILD_TYPE=Release .."
+						}
+						
+						dir("${env.WORKSPACE}/cmaked"){
+							bat "cmake -G \"Visual Studio 16 2019\" -A x64 -DCMAKE_CXX_FLAGS=-m64 -DCMAKE_BUILD_TYPE=Debug .."
+						}
+						
+						dir("${env.WORKSPACE}") {
+							bat "cfg/jenkins/windows/build.bat"							
+						}
+						
+						dir("${env.WORKSPACE}/cfg/jenkins/windows"){
+                            echo 'Install conan for Debug build...'
+                            bat "conan_stage_debug.bat"
+                        }
+
+                        dir("${env.WORKSPACE}") {
+                            echo 'Build Debug version'
+                            bat "cfg/jenkins/windows/build_debug.bat"
+                        }
+					}
+				}
+				
+				stage('[Win] Test') {
+					steps {
+						echo 'Testing..'
+						
+						dir("${env.WORKSPACE}"){
+							bat "mkdir reports"
+						}
+						
+						dir("${env.WORKSPACE}/cmake/bin"){
+							script {
+								try {
+								bat "essentials_unit_tests.exe --log_format=JUNIT --report_level=no --gtest_output=xml:./../../reports/unit_test_results.xml"
+								} catch (Exception e) {
+									echo 'essentials_unit_tests did not run!!!'
+								}
+							}
+						}
+						
+						dir("${env.WORKSPACE}/reports"){
+							junit 'unit_test_results.xml'
+						}
+					}
+				}
+				
+				stage('[Win] Deploy') {
+					steps {
+						echo 'Deploying....'
+
+						script {
+								if (params.RELEASE_BUILD == true) {											
+
+									dir("${env.WORKSPACE}") {
+										bat "mkdir deploy"
+										bat "mkdir deploy\\essentials"
+										bat "mkdir deploy\\essentials\\source"
+										bat "mkdir deploy\\essentials\\build"
+										bat "mkdir deploy\\essentials\\documentation"
+									}
+
+									dir("${env.WORKSPACE}/deploy/essentials/source") {
+										checkout scm
+									}
+
+									dir("${env.WORKSPACE}/docs") {
+										bat "generateAll.bat"
+										if (params.DOXYGEN == true) {
+											if(params.DOXYGEN_RTF == true) {
+												bat "generate_doxygen.py -r yes -v ${env.VERSION}"
+											}
+											else
+											{
+												bat "generate_doxygen.py -v ${env.VERSION}"
+											}
+										}
+										echo 'Documentation generated.'
+									}
+
+
+									dir("${env.WORKSPACE}/cmake") {
+										unstash "linux_release_bin"
+										unstash "linux_release_lib"
+									}
+
+									dir("${env.WORKSPACE}/cmaked") {
+										unstash "linux_debug_bin"
+										unstash "linux_debug_lib"
+									}
+
+									dir("${env.WORKSPACE}/cfg/jenkins/windows") {
+										bat "essentials_deploy.bat ${VERSION_W_BUILD} ${env.ARTIFACTORY_USER} ${env.ARTIFACTORY_PASS} ${env.ARTIFACTORY_ESSENTIALS}"
+										bat "upload_artifactory.bat ${env.VERSION} ${env.ARTIFACTORY_USER} ${env.ARTIFACTORY_PASS} ${env.SX_CONAN}"
+									}
+								}
+								else {
+									echo 'No RELEASE, NO deployment.'
+								}
+						}
+					}
+				}
+			}
+		}
+
+		stage('Linux tagging') {
+			agent {
+				docker {
+					registryUrl "${env.SX_DOCKER_REGISTRY}"
+					image 'sx_debian_gcc_ruby_conan:latest'
+					args '-u 0:0 -v /mnt/user/development/ci_ssh:/root/.ssh'
+				}
+			}
+
+			steps {
+				script {
+					if (params.RELEASE_BUILD == true) {
+						echo 'Tagging ${SOFTWARE_VERSION_STR}'
+							sh 'git config --global --add safe.directory \'*\''
+							sh 'git tag \${SOFTWARE_VERSION_STR}'
+							sh 'git push origin \${SOFTWARE_VERSION_STR}'
+					}
+					else{
+						echo 'No RELEASE no TAG!'
+					}
+				}
+			}
+		}
+	}
+}

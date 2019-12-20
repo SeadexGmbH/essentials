@@ -1,0 +1,13 @@
+==== Exception
+
+===== Exception macros
+
+The following macros can be used within the essentials library to create exception classes:
+
+* *SXE_EXCEPTION* creates an exception class inheriting std::exception with the given name. It also supports creating messages with placeholders by calling fmt::format.
+
+* *SXE_EXCEPTION_WITH_BASE* creates an exception class inheriting the given base class with the given name. It also supports creating messages with placeholders by calling fmt::format.
+
+* *SXE_EXCEPTION_WITH_CODE_IN_NAMESPACE* creates an exception class inheriting std::exception with the given name. It also supports creating messages with placeholders by calling fmt::format. It provides an error code as well.
+
+* *SXE_EXCEPTION_WITH_CODE* creates an exception class inheriting std::exception with the given name. It also supports creating messages with placeholders by calling fmt::format. It provides an error code as well.

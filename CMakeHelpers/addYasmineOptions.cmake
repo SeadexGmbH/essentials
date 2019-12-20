@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 
 if(POLICY CMP0054)
   cmake_policy(SET CMP0054 NEW)
@@ -10,7 +10,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/addSeadexOptions.cmake")
 # yasmine's preprocessor definitions
 
 
-set(Y_OPTIMIZE "SPEED" CACHE STRING "Sets the optimize type. Supported values: SPEED and SIZE. Default value is SPEED.")
+set(Y_OPTIMIZE "SPEED" CACHE STRING "Sets the optimization type. Supported values: SPEED and SIZE. Default value is SPEED.")
 if( "${Y_OPTIMIZE}" STREQUAL "SIZE" )
 	set(extra_flags "${extra_flags} -D \"Y_OPTIMIZE_4_SIZE\"")		
 	message(STATUS "Optimizing for size.")

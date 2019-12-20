@@ -1,0 +1,11 @@
+==== File
+
+Essentials library provides some basic file content manipulating functionality.
+
+The provided functions are:
+
+* get the content of a file as string
+* get the content of file as bytes
+* write bytes to file
+* write string to file
+

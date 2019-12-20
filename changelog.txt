@@ -1,11 +1,37 @@
 # Change log
 All notable changes to this project are documented in this file.
 
-##[1.3.3] - 2019-12-19
+##[2.0.0]
+
+The library is now licensed under the MIT license.
+
+### Added
+- logging
+- threading context
+- bytes helper functions
+- string conversion functions
+- helper functions for file to string and file to bytes and vice versa
+- data type wrapper macro
+
+
+### Changed
+- removed support for C++03
+- removed Boost library dependencies
+- integrated fmt and spdlog libraries
+- improved uri class
+- improved data type conversions
+
+
+##[1.4.0]
+### Changed
+- internal changes to fix Visual Studio 2019 compiler warnings
+
+
+##[1.3.3]
 - removed inexistent property reference from unit test project
 
 
-##[1.1.0] - 2017-09-20
+##[1.1.0]
 
 ### Added
 - Support for Visual Studio 2017 builds
@@ -13,7 +39,7 @@ All notable changes to this project are documented in this file.
 - added uri class
 
 
-##[1.0.1] - 2017-04-07
+##[1.0.1]
 
 ### Changed
 - macro helpers improved to count up to 15 parameters
@@ -21,7 +47,7 @@ All notable changes to this project are documented in this file.
 are located in the 'include/essentials/compatibility' folder and other header files are located in the 'include/essentials' folder.
 
 
-##[1.0.0] - 2017-03-30
+##[1.0.0]
 
 - The very first released version of essentials
 

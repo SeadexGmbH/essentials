@@ -1,0 +1,5 @@
+== Downloads
+
+Download the latest version of essentials library link:https://seadex.de/downloads/products/essentials/essentials_2_0_0.7z[here, window=_blank].
+
+For older versions, you shall check on essentials' link:https://github.com/SeadexGmbH/essentials/releases[GitHub, window=_blank].

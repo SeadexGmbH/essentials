@@ -1,0 +1,5 @@
+==== Math
+
+Provides a single function for now:
+
+* *round* rounds a double value to the given precision.

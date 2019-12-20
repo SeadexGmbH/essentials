@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "essentials", "essentials\essentials.vcxproj", "{132F81F8-46DA-49D0-9071-D70BC087B38C}"
 EndProject
@@ -13,9 +13,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build_tools", "build_tools", "{77439103-0A48-4243-8D07-3223DC5CF353}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMake", "CMake", "{86310DF6-AE4D-48C6-B302-80F5091FC09B}"
-	ProjectSection(SolutionItems) = preProject
-		..\CMakeLists.txt = ..\CMakeLists.txt
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{1C08A7CC-21A3-42E1-AA39-7E03F88A73F3}"
 	ProjectSection(SolutionItems) = preProject
@@ -29,13 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "essentials", "essentials", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMakeHelpers", "CMakeHelpers", "{35E7ED3A-7DF9-4E75-B289-99B3D0050992}"
 	ProjectSection(SolutionItems) = preProject
-		CMakeHelpers\addBoost.cmake = CMakeHelpers\addBoost.cmake
 		CMakeHelpers\addSeadexOptions.cmake = CMakeHelpers\addSeadexOptions.cmake
 		CMakeHelpers\addSpecificFlags.cmake = CMakeHelpers\addSpecificFlags.cmake
 		CMakeHelpers\addYasmineOptions.cmake = CMakeHelpers\addYasmineOptions.cmake
 		CMakeHelpers\functions.cmake = CMakeHelpers\functions.cmake
 		CMakeHelpers\functionsAddCompilerFlags.cmake = CMakeHelpers\functionsAddCompilerFlags.cmake
-		CMakeHelpers\functionsRapidJSON.cmake = CMakeHelpers\functionsRapidJSON.cmake
 		CMakeHelpers\setVariables.cmake = CMakeHelpers\setVariables.cmake
 	EndProjectSection
 EndProject
@@ -44,101 +39,70 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "essentials_unit_tests", "es
 		essentials_unit_tests\CMakeLists.txt = essentials_unit_tests\CMakeLists.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{6AA2B272-92BD-4D62-925F-ED8116B08780}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "context_example", "examples\context_example\context_example.vcxproj", "{F7FAD372-D997-45BB-BBFC-C82970C3A603}"
+	ProjectSection(ProjectDependencies) = postProject
+		{132F81F8-46DA-49D0-9071-D70BC087B38C} = {132F81F8-46DA-49D0-9071-D70BC087B38C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logger_example", "examples\logger_example\logger_example.vcxproj", "{73589D8A-5ECB-4CA4-BC3E-E4B7B364C19B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{132F81F8-46DA-49D0-9071-D70BC087B38C} = {132F81F8-46DA-49D0-9071-D70BC087B38C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enum_example", "examples\enum_example\enum_example.vcxproj", "{FBEF4747-335E-4B85-828F-C27158CB939F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{132F81F8-46DA-49D0-9071-D70BC087B38C} = {132F81F8-46DA-49D0-9071-D70BC087B38C}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bug reproduction projects", "bug reproduction projects", "{A250A8F4-06C9-45D9-BF4E-549AA1C5D2A0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log_brackets", "bug_reproductions\log_brackets\log_brackets.vcxproj", "{44E283A2-45BC-4349-B610-3A30115DAECD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{132F81F8-46DA-49D0-9071-D70BC087B38C} = {132F81F8-46DA-49D0-9071-D70BC087B38C}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "macro scripts", "macro scripts", "{E67034C8-C935-4906-AB63-4D9831665241}"
+	ProjectSection(SolutionItems) = preProject
+		cfg\scripts\generate_count_macros.py = cfg\scripts\generate_count_macros.py
+		cfg\scripts\generate_SXE_ENHANCED_ENUM_NUMERIC_SELECT_x.py = cfg\scripts\generate_SXE_ENHANCED_ENUM_NUMERIC_SELECT_x.py
+		cfg\scripts\generate_SXE_ENHANCED_ENUM_SELECT_x.py = cfg\scripts\generate_SXE_ENHANCED_ENUM_SELECT_x.py
+		cfg\scripts\generate_SXE_ENUM_IDX_x.py = cfg\scripts\generate_SXE_ENUM_IDX_x.py
+		cfg\scripts\generate_SXE_GET_ARGUMENT_x.py = cfg\scripts\generate_SXE_GET_ARGUMENT_x.py
+		cfg\scripts\generate_SXE_MAKE_PAIR_IDX_x.py = cfg\scripts\generate_SXE_MAKE_PAIR_IDX_x.py
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug - C++ 03|Win32 = Debug - C++ 03|Win32
-		Debug - C++ 03|x64 = Debug - C++ 03|x64
-		Debug - C++ 03|x86 = Debug - C++ 03|x86
-		Debug - VS 2015|Win32 = Debug - VS 2015|Win32
-		Debug - VS 2015|x64 = Debug - VS 2015|x64
-		Debug - VS 2015|x86 = Debug - VS 2015|x86
-		Debug - VS 2017|Win32 = Debug - VS 2017|Win32
-		Debug - VS 2017|x64 = Debug - VS 2017|x64
-		Debug - VS 2017|x86 = Debug - VS 2017|x86
-		Release - C++ 03|Win32 = Release - C++ 03|Win32
-		Release - C++ 03|x64 = Release - C++ 03|x64
-		Release - C++ 03|x86 = Release - C++ 03|x86
-		Release - VS 2015|Win32 = Release - VS 2015|Win32
-		Release - VS 2015|x64 = Release - VS 2015|x64
-		Release - VS 2015|x86 = Release - VS 2015|x86
-		Release - VS 2017|Win32 = Release - VS 2017|Win32
-		Release - VS 2017|x64 = Release - VS 2017|x64
-		Release - VS 2017|x86 = Release - VS 2017|x86
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - C++ 03|Win32.ActiveCfg = Debug - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - C++ 03|Win32.Build.0 = Debug - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - C++ 03|x64.ActiveCfg = Debug - C++ 03|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - C++ 03|x64.Build.0 = Debug - C++ 03|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - C++ 03|x86.ActiveCfg = Debug - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - C++ 03|x86.Build.0 = Debug - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - C++ 03|x86.Build.2 = Debug - VS 2013|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2015|Win32.ActiveCfg = Debug - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2015|Win32.Build.0 = Debug - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2015|x64.ActiveCfg = Debug - VS 2015|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2015|x64.Build.0 = Debug - VS 2015|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2015|x86.ActiveCfg = Debug - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2015|x86.Build.0 = Debug - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2017|Win32.ActiveCfg = Debug - VS 2017|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2017|Win32.Build.0 = Debug - VS 2017|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2017|x64.ActiveCfg = Debug - VS 2017|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2017|x64.Build.0 = Debug - VS 2017|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2017|x86.ActiveCfg = Debug - VS 2017|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug - VS 2017|x86.Build.0 = Debug - VS 2017|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - C++ 03|Win32.ActiveCfg = Release - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - C++ 03|Win32.Build.0 = Release - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - C++ 03|x64.ActiveCfg = Release - C++ 03|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - C++ 03|x64.Build.0 = Release - C++ 03|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - C++ 03|x86.ActiveCfg = Release - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - C++ 03|x86.Build.0 = Release - C++ 03|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2015|Win32.ActiveCfg = Release - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2015|Win32.Build.0 = Release - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2015|x64.ActiveCfg = Release - VS 2015|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2015|x64.Build.0 = Release - VS 2015|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2015|x86.ActiveCfg = Release - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2015|x86.Build.0 = Release - VS 2015|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2017|Win32.ActiveCfg = Release - VS 2017|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2017|Win32.Build.0 = Release - VS 2017|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2017|x64.ActiveCfg = Release - VS 2017|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2017|x64.Build.0 = Release - VS 2017|x64
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2017|x86.ActiveCfg = Release - VS 2017|Win32
-		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release - VS 2017|x86.Build.0 = Release - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - C++ 03|Win32.ActiveCfg = Debug - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - C++ 03|Win32.Build.0 = Debug - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - C++ 03|x64.ActiveCfg = Debug - C++ 03|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - C++ 03|x64.Build.0 = Debug - C++ 03|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - C++ 03|x86.ActiveCfg = Debug - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - C++ 03|x86.Build.0 = Debug - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2015|Win32.ActiveCfg = Debug - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2015|Win32.Build.0 = Debug - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2015|x64.ActiveCfg = Debug - VS 2015|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2015|x64.Build.0 = Debug - VS 2015|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2015|x86.ActiveCfg = Debug - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2015|x86.Build.0 = Debug - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2017|Win32.ActiveCfg = Debug - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2017|Win32.Build.0 = Debug - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2017|x64.ActiveCfg = Debug - VS 2017|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2017|x64.Build.0 = Debug - VS 2017|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2017|x86.ActiveCfg = Debug - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug - VS 2017|x86.Build.0 = Debug - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - C++ 03|Win32.ActiveCfg = Release - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - C++ 03|Win32.Build.0 = Release - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - C++ 03|x64.ActiveCfg = Release - C++ 03|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - C++ 03|x64.Build.0 = Release - C++ 03|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - C++ 03|x86.ActiveCfg = Release - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - C++ 03|x86.Build.0 = Release - C++ 03|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2015|Win32.ActiveCfg = Release - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2015|Win32.Build.0 = Release - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2015|x64.ActiveCfg = Release - VS 2015|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2015|x64.Build.0 = Release - VS 2015|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2015|x86.ActiveCfg = Release - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2015|x86.Build.0 = Release - VS 2015|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2017|Win32.ActiveCfg = Release - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2017|Win32.Build.0 = Release - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2017|x64.ActiveCfg = Release - VS 2017|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2017|x64.Build.0 = Release - VS 2017|x64
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2017|x86.ActiveCfg = Release - VS 2017|Win32
-		{6F4D72B1-E418-4859-8C19-D58659041948}.Release - VS 2017|x86.Build.0 = Release - VS 2017|Win32
+		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug|x64.ActiveCfg = Debug|x64
+		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Debug|x64.Build.0 = Debug|x64
+		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release|x64.ActiveCfg = Release|x64
+		{132F81F8-46DA-49D0-9071-D70BC087B38C}.Release|x64.Build.0 = Release|x64
+		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug|x64.ActiveCfg = Debug|x64
+		{6F4D72B1-E418-4859-8C19-D58659041948}.Debug|x64.Build.0 = Debug|x64
+		{6F4D72B1-E418-4859-8C19-D58659041948}.Release|x64.ActiveCfg = Release|x64
+		{6F4D72B1-E418-4859-8C19-D58659041948}.Release|x64.Build.0 = Release|x64
+		{F7FAD372-D997-45BB-BBFC-C82970C3A603}.Debug|x64.ActiveCfg = Debug|x64
+		{F7FAD372-D997-45BB-BBFC-C82970C3A603}.Debug|x64.Build.0 = Debug|x64
+		{F7FAD372-D997-45BB-BBFC-C82970C3A603}.Release|x64.ActiveCfg = Release|x64
+		{F7FAD372-D997-45BB-BBFC-C82970C3A603}.Release|x64.Build.0 = Release|x64
+		{73589D8A-5ECB-4CA4-BC3E-E4B7B364C19B}.Debug|x64.ActiveCfg = Debug|x64
+		{73589D8A-5ECB-4CA4-BC3E-E4B7B364C19B}.Debug|x64.Build.0 = Debug|x64
+		{73589D8A-5ECB-4CA4-BC3E-E4B7B364C19B}.Release|x64.ActiveCfg = Release|x64
+		{73589D8A-5ECB-4CA4-BC3E-E4B7B364C19B}.Release|x64.Build.0 = Release|x64
+		{FBEF4747-335E-4B85-828F-C27158CB939F}.Debug|x64.ActiveCfg = Debug|x64
+		{FBEF4747-335E-4B85-828F-C27158CB939F}.Debug|x64.Build.0 = Debug|x64
+		{FBEF4747-335E-4B85-828F-C27158CB939F}.Release|x64.ActiveCfg = Release|x64
+		{FBEF4747-335E-4B85-828F-C27158CB939F}.Release|x64.Build.0 = Release|x64
+		{44E283A2-45BC-4349-B610-3A30115DAECD}.Debug|x64.ActiveCfg = Debug|x64
+		{44E283A2-45BC-4349-B610-3A30115DAECD}.Debug|x64.Build.0 = Debug|x64
+		{44E283A2-45BC-4349-B610-3A30115DAECD}.Release|x64.ActiveCfg = Release|x64
+		{44E283A2-45BC-4349-B610-3A30115DAECD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +113,10 @@ Global
 		{968024AC-A87C-40E9-B75A-B7AE9790C73F} = {1C08A7CC-21A3-42E1-AA39-7E03F88A73F3}
 		{35E7ED3A-7DF9-4E75-B289-99B3D0050992} = {1C08A7CC-21A3-42E1-AA39-7E03F88A73F3}
 		{63218938-B7EC-4913-9B3B-CEAE1F2A925B} = {1C08A7CC-21A3-42E1-AA39-7E03F88A73F3}
+		{F7FAD372-D997-45BB-BBFC-C82970C3A603} = {6AA2B272-92BD-4D62-925F-ED8116B08780}
+		{73589D8A-5ECB-4CA4-BC3E-E4B7B364C19B} = {6AA2B272-92BD-4D62-925F-ED8116B08780}
+		{FBEF4747-335E-4B85-828F-C27158CB939F} = {6AA2B272-92BD-4D62-925F-ED8116B08780}
+		{44E283A2-45BC-4349-B610-3A30115DAECD} = {A250A8F4-06C9-45D9-BF4E-549AA1C5D2A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB028EB1-46EF-44C3-B508-97BC3E09DC4D}

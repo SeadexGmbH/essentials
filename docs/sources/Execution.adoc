@@ -1,0 +1,7 @@
+==== Execution context
+
+A class that runs a function in a different thread.
+
+===== Example
+
+An example can be found in the project 'context_example'.

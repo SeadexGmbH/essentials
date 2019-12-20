@@ -19,21 +19,63 @@
     <Filter Include="license">
       <UniqueIdentifier>{13a9f023-217a-4d7a-946f-8147bce1d21a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\preprocessor">
+      <UniqueIdentifier>{65facc08-e549-4326-9650-f00e9dc4616e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\log">
+      <UniqueIdentifier>{6ecceab3-eb95-4eae-93e4-9bf2ceda5ad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\log">
+      <UniqueIdentifier>{5653aedc-cf2e-4847-8ab1-de474fb64438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\execution">
+      <UniqueIdentifier>{e6a20905-4d00-4c34-978a-4e169afc65ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\execution">
+      <UniqueIdentifier>{2e1addea-30dd-41c0-8324-fdac0182e8f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\enum helpers">
+      <UniqueIdentifier>{bb1687a3-02df-4598-848a-d499e55797ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\conversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\format_settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\sxprintf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\essentials_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\uri.cpp">
+    <ClCompile Include="source\log_level.cpp">
+      <Filter>Source Files\log</Filter>
+    </ClCompile>
+    <ClCompile Include="source\logger.cpp">
+      <Filter>Source Files\log</Filter>
+    </ClCompile>
+    <ClCompile Include="source\context_client_configuration.cpp">
+      <Filter>Source Files\execution</Filter>
+    </ClCompile>
+    <ClCompile Include="source\context.cpp">
+      <Filter>Source Files\execution</Filter>
+    </ClCompile>
+    <ClCompile Include="source\file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\byte_helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\string_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\logger_manager.cpp">
+      <Filter>Source Files\log</Filter>
+    </ClCompile>
+    <ClCompile Include="source\null_logger.cpp">
+      <Filter>Source Files\log</Filter>
+    </ClCompile>
+    <ClCompile Include="source\exception_utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,36 +83,10 @@
     <Text Include="..\changelog.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\license\essentials_Anhang_Appendix_20170406.pdf">
-      <Filter>license</Filter>
-    </None>
-    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170406.pdf">
-      <Filter>license</Filter>
-    </None>
-    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_geschaeftliche_Nutzung_Fassung_20170406_en.pdf">
-      <Filter>license</Filter>
-    </None>
-    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170406.pdf">
-      <Filter>license</Filter>
-    </None>
-    <None Include="..\..\license\essentials_Lizenz_und_Nutzungsbedingungen_private_und wissenschaftliche_Nutzung_Fassung_20170406_en.pdf">
-      <Filter>license</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\essentials\compatibility\chrono.hpp">
-      <Filter>Header Files\compatibility</Filter>
-    </ClInclude>
     <ClInclude Include="include\essentials\compatibility\compatibility.hpp">
       <Filter>Header Files\compatibility</Filter>
     </ClInclude>
-    <ClInclude Include="include\essentials\compatibility\thread.hpp">
-      <Filter>Header Files\compatibility</Filter>
-    </ClInclude>
-    <ClInclude Include="include\essentials\base.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\essentials\build_number.hpp">
+    <ClInclude Include="include\essentials\assert.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\essentials\conversion.hpp">
@@ -82,16 +98,7 @@
     <ClInclude Include="include\essentials\exception_template.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\essentials\format_settings.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\essentials\macro_helpers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\essentials\non_copyable.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\essentials\sxprintf.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\essentials\essentials_version.hpp">
@@ -100,8 +107,94 @@
     <ClInclude Include="include\essentials\uri.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\essentials\compatibility\essentials_backward_compatibility.hpp">
-      <Filter>Header Files\compatibility</Filter>
+    <ClInclude Include="include\essentials\type_wrapper.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\essentials\log\logger.hpp">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\log\log_level.hpp">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\log\log.hpp">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\log\log_sink_type.hpp">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\execution\context.hpp">
+      <Filter>Header Files\execution</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\execution\context_user_configuration.hpp">
+      <Filter>Header Files\execution</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\execution\context_macros.hpp">
+      <Filter>Header Files\execution</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\execution\context_configuration.hpp">
+      <Filter>Header Files\execution</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\preprocessor\macro_helpers.hpp">
+      <Filter>Header Files\preprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\file.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\byte_helpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\math.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\string_utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\log\i_logger.hpp">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\log\logger_manager.hpp">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\log\null_logger.hpp">
+      <Filter>Header Files\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\exception_utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\preprocessor\macro_get_argument_x.hpp">
+      <Filter>Header Files\preprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\preprocessor\macro_stringify.hpp">
+      <Filter>Header Files\preprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\preprocessor\macro_count.hpp">
+      <Filter>Header Files\preprocessor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\assert_no_log.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\enhanced_enum.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\enum\enum_macro_helpers.hpp">
+      <Filter>Header Files\enum helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\enum\enhanced_enum_numeric_select_x.hpp">
+      <Filter>Header Files\enum helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\enum\enhanced_enum_select_x.hpp">
+      <Filter>Header Files\enum helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\enum\enum_idx_x.hpp">
+      <Filter>Header Files\enum helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\essentials\enum\make_pair_idx_x.hpp">
+      <Filter>Header Files\enum helpers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Filter>license</Filter>
+    </None>
   </ItemGroup>
 </Project>

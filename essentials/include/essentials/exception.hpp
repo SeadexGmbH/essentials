@@ -1,11 +1,6 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                                                  //
-// This file is part of the Seadex essentials library (http://essentials.seadex.de).                //
-// Copyright( C ) 2017 Seadex GmbH                                                                  //
-// Licensing information is available in the folder "license" which is part of this distribution.   //
-// The same information is available on the www @ http://essentials.seadex.de/License.html.         //
-//                                                                                                  //
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Copyright (c) 2017-, Seadex GmbH
+// The Seadex GmbH licenses this file to you under the MIT license.
+// This file is part of the Seadex essentials library (http://essentials.seadex.de).
 
 
 #ifndef EXCEPTION_B675DC28_13E9_4827_9916_4649C36BD407
@@ -19,9 +14,9 @@ namespace sxe
 {
 
 
-//!\def SX_EXCEPTION( exception )
+//!\def SXE_EXCEPTION( exception )
 //!\brief The Seadex essentials exception class.
-SX_EXCEPTION( exception )
+SXE_EXCEPTION( exception )
 
 
 }

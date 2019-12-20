@@ -1,0 +1,9 @@
+==== Enhanced enum
+
+Essentials library provides macros to create enhanced enums. The macros will create enum structures that provide more functionality than a classic enum structure.
+
+===== Macros
+
+* *SXE_ENHANCED_ENUM* with up to 50 enumerators.
+
+* *SXE_ENHANCED_ENUM_NUMERIC* with up to 50 enumerators with associated numeric values.

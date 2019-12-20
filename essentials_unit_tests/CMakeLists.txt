@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 
 project(essentials_unit_tests)
 
@@ -8,7 +8,11 @@ if(POLICY CMP0054)
   cmake_policy(SET CMP0054 NEW)
 endif()
 
-set(HEADER_FILES "./../essentials/include/essentials/*.hpp" "./../essentials/include/essentials/compatibility/*.hpp")
+set(HEADER_FILES "./../essentials/include/essentials/*.hpp" 
+"./../essentials/include/essentials/compatibility/*.hpp"
+"./../essentials/include/essentials/execution/*.hpp"
+"./../essentials/include/essentials/log/*.hpp"
+"./../essentials/include/essentials/preprocessor/*.hpp")
 file(GLOB essentials_unit_tests_SRC "./*.cpp" ${HEADER_FILES})
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -20,23 +24,24 @@ include(./../CMakeHelpers/addSeadexOptions.cmake)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${extra_flags}")
 
-add_executable(essentials_unit_tests ${essentials_unit_tests_SRC})
+set(link_libraries_list "")
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	add_library_for_linking(link_libraries_list essentials)
+else()
+	add_library_for_linking(link_libraries_list libessentials)
+endif()
+
+message(STATUS "essentials_unit_tests linking to libraries: ${link_libraries_list}")
+message(STATUS "essentials_unit_tests linking to conanlibs: ${CONAN_LIBS}")
+
+ADD_EXECUTABLE(essentials_unit_tests ${essentials_unit_tests_SRC})
+
 include_directories("./../essentials/include")
 
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")		
-	ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK) 
-endif()
+TARGET_LINK_LIBRARIES(essentials_unit_tests ${link_libraries_list} ${CONAN_LIBS})
 
-set(link_libraries_list "")
-use_boost_libraries(link_libraries_list)
-
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-	add_library_for_linking(link_libraries_list libessentials)
-elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-	add_library_for_linking(link_libraries_list essentials)
-endif()
-
-message(STATUS "essentials_unit_tests linking to libraries: ${link_libraries_list}" )
-target_link_libraries(essentials_unit_tests LINK_PUBLIC ${link_libraries_list})
+ENABLE_TESTING()
+ADD_TEST(essentials_unit_tests AUTO)
 
 install(TARGETS essentials_unit_tests DESTINATION bin)

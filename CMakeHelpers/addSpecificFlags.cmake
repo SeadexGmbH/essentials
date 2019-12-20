@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 
 if(POLICY CMP0054)
   cmake_policy(SET CMP0054 NEW)
@@ -6,37 +6,37 @@ endif()
 
 add_compiler_flag("-Wall")
 
+if(NOT DEFINED CPP_VERSION)
+	set(CPP_VERSION "17")
+elseif("${CPP_VERSION}" STREQUAL "03")	
+	message(SEND_ERROR "Error: C++03 is no longer supported!")
+endif()
+
+
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-#gcc/clang compiler flags
+
+	if(DEFINED CPP_VERSION AND "${CPP_VERSION}" STREQUAL "03")
+		message(SEND_ERROR "Error: C++03 is no longer supported!")
+	endif()
+
+
+	#gcc/clang compiler flags
 	if(NOT "SX_PEDANTIC" STREQUAL "OFF")
 		add_compiler_flag("-pedantic")
 	endif()
 	
-	if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-		add_compiler_flag("-g")
-	endif()
-
-	if("${CPP_VERSION}" STREQUAL "03")
-		add_compiler_flag("-std=c++03")
-		add_compiler_flag("-D \"SX_CPP03_BOOST\"")
-		add_compiler_flag("-D \"SX_NO_VARIADIC_MACRO\"")
-	elseif("${CPP_VERSION}" STREQUAL "03")
-		add_compiler_flag("-std=c++14")
+	# for release
+	if( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" )
+		message(STATUS "Build release.")
+		add_compiler_flag("-s ")
+	elseif("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+		message(STATUS "Build debug.")
 	else()
-		add_compiler_flag("-std=c++11")
-		add_compiler_flag("-D \"SX_NO_STD_MAKE_UNIQUE\"")
+		message(WARNING "No build type selected via CMAKE_BUILD_TYPE!")
 	endif()
-
-# platform
-	if( "${CMAKE_CXX_FLAGS}" STREQUAL "-m64" )
-		add_compiler_flag("-m64")
-		message(STATUS "setting platform x64")
-	elseif("${CMAKE_CXX_FLAGS}" STREQUAL "-m32")
-		add_compiler_flag("-m32")
-		message(STATUS "setting platform x86")
-	endif()
+	
+	add_compiler_flag("-std=c++${CPP_VERSION}")
 endif()
-
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	# Checks buffer security.
@@ -95,7 +95,7 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	
 
 	# for release
-	if( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" )	
+	if( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" )
 		#Creates fast code.
 		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /O2")
 		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /PDB-")
@@ -108,5 +108,10 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 		#Creates a program database (PDB) file.
 		set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /PDB")
 	endif()
-		
+
+	add_compiler_flag("/std=c++${CPP_VERSION}")
+
 endif()
+
+set(CMAKE_CXX_STANDARD ${CPP_VERSION})
+message(STATUS "C++ standard set to c++${CPP_VERSION}.")
