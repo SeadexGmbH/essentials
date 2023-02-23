@@ -1,11 +1,11 @@
 ==== Dependencies
 
-Essentials has the following dependencies, from version 2.0:
+The essentials library starting with version 2.1 has the following dependencies:
 
-* gtest 1.8.1
-* spdlog 1.9.2
-* fmt 8.0.1
+* gtest 1.13.0
+* spdlog 1.11.0
+* fmt 9.1.0
 
 These dependencies can be provided using Conan (see <<Use of Conan>>).
 
-gtest library is used for unit tests only.
+The gtest library is used for unit tests only.

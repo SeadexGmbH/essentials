@@ -1,6 +1,6 @@
 ==== CMake
 
-The build with CMake is currently tested with Linux (Debian, gcc) and for Windows (Microsoft Visual Studio). 
+The build with CMake is currently tested for Linux (Debian, gcc) and Windows (Microsoft Visual Studio). 
 
 The following were used: 
 
@@ -9,9 +9,10 @@ The following were used:
 
 The _CMakeFileLists.txt_ files are located in the solution directory, the essentials project directory, the examples directory, and the directory of the unit tests project. 
 
-===== Generating with CMake
+===== Generating with CMake and Conan
 
-Create a folder where the CMake output and the results of the build are supposed to be stored. For example, create the _cmake_build_ folder. 
+NOTE: The following commands require Conan version 2.0.
+
 
 ====== Linux
 
@@ -19,63 +20,36 @@ In a terminal go to the directory into which you extracted essentials and run th
 
 [source]
 ----
-cmake -G "Unix Makefiles" .
-make VERBOSE=1
+conan install . -g CMakeToolchain --profile=release --build=missing -of cmake
+
+cd cmake
+
+cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Release -DESS_BUILD_UNIT_TESTS=ON
+
+cmake --build --preset conan-release
 ----
 
-*Choosing the architecture*
+NOTE: Options (e.g. architecture) are used from the Conan profile.
 
-The default build architecture is x86. To choose the x64 architecture for the Linux build, we need to add the value *m64* to the *CMAKE_CXX_FLAGS* variable: 
-
-[source]
-----
-cmake -G "Unix Makefiles" -DCMAKE_CXX_FLAGS=-m64 ..
-----
 
 ====== Windows
 
-Open a console, switch into the folder you've created (e.g. _cmake_build_) and run the command (for a release build): 
+In a terminal go to the directory into which you extracted essentials and run the following commands: 
+
 [source]
 ----
-cmake -G "Visual Studio 16 2019" -A x64 -DCMAKE_CXX_FLAGS=-m64 -DCMAKE_BUILD_TYPE=Release ..
+conan install . -g CMakeToolchain --profile=release --build=missing
+
+cmake . -G "Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DESS_BUILD_UNIT_TESTS=ON
+
+cmake --build --preset conan-release
 ----
 
-Under Windows, as default, CMake uses the newest Visual Studio installation. But a compiler can be used by explicitly specifying it on calling CMake. 
-
-By running the following command (among other information) the generators that are available on your platform will be listed: 
-[source]
-----
-cmake --help
-----
-
-For example, using Visual Studio 2013 as a generator, the command will look like this: 
-[source]
-----
-cmake -G "Visual Studio 12 2013" -DCMAKE_BUILD_TYPE=Release ..
-----
-
-*Choosing the architecture*
-
-The architecture defaults to x86. To switch to x64 just specify the x64 platform after the generator, according to the following example: 
-[source]
-----
-cmake -G "Visual Studio 14 2015 x64" -DCMAKE_BUILD_TYPE=Release ..
-----
+NOTE: Options like architecture, Visual Studio version (generator), etc... are used from Conan profiles.
 
 *Release/Debug*
 
-Choosing between release and debug builds is the same for both Windows and Linux. On invoking CMake, pass the parameter *-DCMAKE_BUILD_TYPE* as in the following examples: 
-
-[source]
-----
-# for Windows
-cmake -G "Visual Studio 14 2015 x64" -DCMAKE_BUILD_TYPE=Release ..
-cmake -G "Visual Studio 14 2015 x64" -DCMAKE_BUILD_TYPE=Debug ..
- 
-# for Linux
-cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
-cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
-----
+Choosing between release and debug builds is done via Conan profiles and presets.
 
 *Preprocessor definitions*
 
@@ -87,7 +61,16 @@ Using essentials' preprocessor definitions with CMake is also possible by passin
 
 |CPP_VERSION=[VALUE]| Sets the standard for the {CPP} compiler. When it is not used, {CPP}11 will be used.
 
-|ESS_USE_NULL_LOGGER=[ON]| When ESS_USE_NULL_LOGGER is defined (no mether what value) a null logger will be used. This means, no logging.
+|ESS_USE_NULL_LOGGER=[ON]| When ESS_USE_NULL_LOGGER is defined (no matter what value) a null logger will be used. This means, no logging.
+|===
+
+*Build options*
+
+The essentials build can be customized using the following options:
+
+[cols="1,1"]
+|===
+|ESS_BUILD_UNIT_TESTS=[OFF]| When ESS_BUILD_UNIT_TESTS is defined, the unit tests project will be built as well. By default it is not defined and therefore, not built.
 
 |FMT_LIB_INCLUDE=[VALUE]
 
@@ -96,16 +79,8 @@ FMT_LIB=[VALUE]
 SPDLOG_LIB_INCLUDE=[VALUE] 
 
 SPDLOG_LIB=[VALUE]| To use fmt and spdlog libraries from the user location, all four variables must be used at the same time with the correct paths. For the libs, the library is specified as well (e.g. ".../fmt/lib/fmt.lib").
+
+|GTEST_LIB_INCLUDE=[VALUE]
+
+GTEST_LIB=[VALUE]| To build the unit tests project without Conan, the Google test library reference must be used.
 |===
-
-
-====== Example
-
-[source]
-----
-# for Windows
-cmake -G "Visual Studio 14 2015 x64" -DESS_USE_NULL_LOGGER=1 ..
- 
-# for Linux
-cmake -G "Unix Makefiles" -DESS_USE_NULL_LOGGER=1 ..
-----

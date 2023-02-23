@@ -8,14 +8,14 @@ For Visual Studio 2019 a ready-to-use solution is provided. It contains:
 * essentials_unit_tests - source code of the unit tests 
 * examples - projects using and demonstrating some of the features of essentials
 * bug_reproductions - projects where bugs are reproduced
-* build - folder containing the property sheets for the projects 
+* build - a folder containing the property sheets for the projects 
 * essentials.sln - the solution file that contains the projects mentioned above 
 * license file
-* docs  folder containing the documentation
+* docs - a folder containing the documentation
 
 ===== Use of Conan
 
-Essentials can use link:https://conan.io/downloads.html[Conan, window=_blank] to get its dependencies (see the <<Dependencies>>)
+The essentials library can use link:https://conan.io/downloads.html[Conan, window=_blank] to get its dependencies (see the <<Dependencies>>)
 
 
-After the build the essentials library can be integrated into your projects. 
+After the build, the essentials library can be integrated into your projects. 

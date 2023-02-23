@@ -30,24 +30,27 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	add_library_for_linking(link_libraries_list essentials)
 else()
 	add_library_for_linking(link_libraries_list libessentials)
+	find_package(Threads REQUIRED)
+	add_library_for_linking(link_libraries_list Threads::Threads)
 endif()
 
 if( NOT "${FMT_LIB_INCLUDE}" STREQUAL "" AND NOT "${FMT_LIB}" STREQUAL "" AND NOT "${SPDLOG_LIB_INCLUDE}" STREQUAL "" AND NOT "${SPDLOG_LIB}" STREQUAL "")
 	include_directories("${FMT_LIB_INCLUDE}")
 	include_directories("${SPDLOG_LIB_INCLUDE}")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D \"SPDLOG_FMT_EXTERNAL\"")
 	add_library_for_linking(link_libraries_list "${FMT_LIB}")
 	add_library_for_linking(link_libraries_list "${SPDLOG_LIB}")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D \"SPDLOG_FMT_EXTERNAL\"")
+else()
+	include_directories("${CMAKE_INCLUDE_PATH}")
 endif()
 
 message(STATUS "context_example linking to libraries: ${link_libraries_list}")
-message(STATUS "context_example linking to conanlibs: ${CONAN_LIBS}")
 
 ADD_EXECUTABLE(context_example ${context_example_SRC})
 
 include_directories("./../../essentials/include")
 
-TARGET_LINK_LIBRARIES(context_example ${link_libraries_list} ${CONAN_LIBS})
+TARGET_LINK_LIBRARIES(context_example ${link_libraries_list})
 
 ENABLE_TESTING()
 ADD_TEST(context_example AUTO)

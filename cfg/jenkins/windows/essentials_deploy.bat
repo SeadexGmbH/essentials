@@ -31,25 +31,25 @@ mkdir "%essentials_new_version%\build\Linux\x64\gcc 10\Debug\lib"
 
 
 rem copy library files
-copy %CD%\cmake\lib\essentials.lib "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\lib"
-copy %CD%\cmakeD\lib\essentials.lib "%essentials_new_version%\build\Windows\x64\VS2019 142\Debug\lib"
-copy %CD%\cmakeD\lib\essentials.pdb "%essentials_new_version%\build\Windows\x64\VS2019 142\Debug\lib"
+copy %CD%\lib\Release\essentials.lib "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\lib"
+copy %CD%\lib\Debug\essentials.lib "%essentials_new_version%\build\Windows\x64\VS2019 142\Debug\lib"
+copy %CD%\lib\Debug\essentials.pdb "%essentials_new_version%\build\Windows\x64\VS2019 142\Debug\lib"
 
-copy %CD%\cmake\lib\libessentials.so "%essentials_new_version%\build\Linux\x64\gcc 10\Release\lib"
-copy %CD%\cmakeD\lib\libessentials.so "%essentials_new_version%\build\Linux\x64\gcc 10\Debug\lib"
+copy %CD%\cmake\libessentials.so "%essentials_new_version%\build\Linux\x64\gcc 10\Release\lib"
+copy %CD%\cmaked\libessentials.so "%essentials_new_version%\build\Linux\x64\gcc 10\Debug\lib"
 
 rem copy applications
-copy %CD%\cmake\bin\essentials_unit_tests.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
-copy %CD%\cmake\bin\context_example.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
-copy %CD%\cmake\bin\enum_example.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
-copy %CD%\cmake\bin\logger_example.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
-copy %CD%\cmake\bin\log_brackets.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
+copy %CD%\bin\Release\essentials_unit_tests.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
+copy %CD%\bin\Release\context_example.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
+copy %CD%\bin\Release\enum_example.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
+copy %CD%\bin\Release\logger_example.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
+copy %CD%\bin\Release\log_brackets.exe "%essentials_new_version%\build\Windows\x64\VS2019 142\Release\bin"
 
-copy %CD%\cmake\bin\essentials_unit_tests "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
-copy %CD%\cmake\bin\context_example "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
-copy %CD%\cmake\bin\enum_example "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
-copy %CD%\cmake\bin\logger_example "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
-copy %CD%\cmake\bin\log_brackets "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
+copy %CD%\cmake\essentials_unit_tests "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
+copy %CD%\cmake\context_example "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
+copy %CD%\cmake\enum_example "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
+copy %CD%\cmake\logger_example "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
+copy %CD%\cmake\log_brackets "%essentials_new_version%\build\Linux\x64\gcc 10\Release\bin"
 
 rem copy documentation
 robocopy %CD%\docs\release\ %essentials_new_version%\documentation\ /E

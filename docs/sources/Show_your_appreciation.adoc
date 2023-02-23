@@ -6,4 +6,4 @@ There are multiple ways to show your appreciation:
 
 Star essentials on link:https://github.com/SeadexGmbH/essentials[GitHub, window=_blank]
 
-Contact us (via <<Contact & support>>) and allow as to feature you (or your company) as a reference user
+Contact us (via <<Contact & support>>) and allow us to feature you (or your company) as a reference user.

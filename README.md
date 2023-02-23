@@ -25,7 +25,7 @@ essentials is a small C++ library that offers very basic capabilities for applic
 
 ## Dependencies
 
-Essentials uses the following libraries:
+The essentials library uses the following libraries:
 
 * fmt
 * spdlog

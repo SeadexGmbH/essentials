@@ -13,9 +13,9 @@ These building options are available:
 * <<CMake>> - Description page for building essentials using CMake for Linux and Windows (Visual Studio/MSBuild).
 
 ==== Other compilers and platforms
-Build for Linux with gcc is supported out of the box. For other compilers and/or platforms you can just adopt the CMake files. 
+Building for Linux with gcc is supported out of the box. For other compilers and/or platforms you can just adopt the CMake files. 
 
-Alternatively, you can quite easily set up your own build. Basically, all you need to build essentials with a different compiler suite and/or on a different platform is {CPP}17 support. Just take the essentials source code and set up a library project according to the procedures necessary for your platform. 
+Alternatively, you can quite easily set up your build. All you need to build essentials with a different compiler suite and/or on a different platform is {CPP}17 support. Just take the essentials source code and set up a library project according to the procedures necessary for your platform. 
 
 You can also link:https://seadex.de/Impressum.html[contact us] to get a quote for commercial support for porting essentials to your platform! 
 

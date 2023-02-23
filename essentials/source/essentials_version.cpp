@@ -22,7 +22,7 @@ namespace
 
 
 const std::uint16_t VERSION_MAJOR( 2 );
-const std::uint16_t VERSION_MINOR( 0 );
+const std::uint16_t VERSION_MINOR( 1 );
 const std::uint16_t VERSION_PATCH( 0 );
 
 

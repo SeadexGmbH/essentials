@@ -1,6 +1,6 @@
 ==== Log
 
-Essentials library supports logging.
+The essentials library supports logging.
 
 ===== Log macros
 

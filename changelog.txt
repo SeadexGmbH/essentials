@@ -1,6 +1,13 @@
 # Change log
 All notable changes to this project are documented in this file.
 
+##[2.1.0]
+
+### Changed
+- use Conan 2.0
+- update CMake files to work with Conan 2.0
+
+
 ##[2.0.0]
 
 The library is now licensed under the MIT license.

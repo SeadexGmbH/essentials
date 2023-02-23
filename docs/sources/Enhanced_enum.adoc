@@ -1,6 +1,6 @@
 ==== Enhanced enum
 
-Essentials library provides macros to create enhanced enums. The macros will create enum structures that provide more functionality than a classic enum structure.
+The essentials library provides macros to create enhanced enums. The macros will create an enum structures that provide more functionality than a classic enum structure.
 
 ===== Macros
 

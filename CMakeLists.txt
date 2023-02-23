@@ -16,16 +16,15 @@ if(DEFINED CPP_VERSION AND "${CPP_VERSION}" STREQUAL "03")
 	message(SEND_ERROR "Error: C++03 is no longer supported!")
 endif()
 
-if( (NOT "${FMT_LIB_INCLUDE}" STREQUAL "") AND (NOT "${FMT_LIB}" STREQUAL "") AND (NOT "${SPDLOG_LIB_INCLUDE}" STREQUAL "") AND (NOT "${SPDLOG_LIB}" STREQUAL ""))
+add_compile_options(-DFMT_HEADER_ONLY)
+
+if( (NOT "${FMT_LIB_INCLUDE}" STREQUAL "") AND (NOT "${SPDLOG_LIB}" STREQUAL "") AND (NOT "${SPDLOG_LIB_INCLUDE}" STREQUAL "") AND (NOT "${SPDLOG_LIB}" STREQUAL ""))
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D \"SPDLOG_FMT_EXTERNAL\"")
 	message(STATUS "libfmt or spdlog paths provided by user.")
 else()
-	if(EXISTS "${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake")
-		message(STATUS "Using Conan.")
-		include(./build/conanbuildinfo.cmake)
-		conan_basic_setup()
-		
-		set(SPDLOG_FMT_EXTERNAL ON CACHE  BOOL "")	
+	if(EXISTS "${PROJECT_SOURCE_DIR}/conan_toolchain.cmake")
+		message(STATUS "Using Conan.")		
+		set(SPDLOG_FMT_EXTERNAL ON CACHE BOOL "")
 	else()
 		message(STATUS "Conan CMake file not present. Conan is not used.")
 	endif()
@@ -33,11 +32,9 @@ endif()
 
 add_subdirectory(essentials)
 
-if(EXISTS "${PROJECT_SOURCE_DIR}/essentials_unit_tests")
-	if(EXISTS "${PROJECT_SOURCE_DIR}/build/conanbuildinfo.cmake")
-		message(STATUS "Build unit tests.")
-		add_subdirectory(essentials_unit_tests)
-	endif()
+if(ESS_BUILD_UNIT_TESTS AND EXISTS "${PROJECT_SOURCE_DIR}/essentials_unit_tests")
+	message(STATUS "Build unit tests.")
+	add_subdirectory(essentials_unit_tests)
 endif()
 
 

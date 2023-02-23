@@ -1,4 +1,8 @@
 [requires]
-gtest/1.8.1
-spdlog/1.9.2
-fmt/8.0.1
+gtest/1.13.0
+spdlog/1.11.0
+fmt/9.1.0
+
+
+[options]
+spdlog*:header_only=True

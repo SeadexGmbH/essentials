@@ -102,11 +102,6 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 		
 		#Controls LINK optimizations.
 		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /OPT:REF /OPT:ICF")
-		
-	# for debug
-	elseif( "${CMAKE_BUILD_TYPE}" STREQUAL "Debug" )	
-		#Creates a program database (PDB) file.
-		set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /PDB")
 	endif()
 
 	add_compiler_flag("/std=c++${CPP_VERSION}")
