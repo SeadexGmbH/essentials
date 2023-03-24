@@ -70,6 +70,8 @@ The essentials build can be customized using the following options:
 
 [cols="1,1"]
 |===
+|Definition| Description
+
 |ESS_BUILD_UNIT_TESTS=[OFF]| When ESS_BUILD_UNIT_TESTS is defined, the unit tests project will be built as well. By default it is not defined and therefore, not built.
 
 |FMT_LIB_INCLUDE=[VALUE]

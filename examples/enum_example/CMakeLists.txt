@@ -1,12 +1,6 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.8)
 
 project(enum_example)
-
-set(CMAKE_VERBOSE_MAKEFILE, 1)
-
-if(POLICY CMP0054)
-  cmake_policy(SET CMP0054 NEW)
-endif()
 
 set(HEADER_FILES "./../../essentials/include/essentials/*.hpp"
 "./../../essentials/include/essentials/compatibility/*.hpp"

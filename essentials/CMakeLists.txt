@@ -1,12 +1,8 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.8)
 
 project(essentials)
 
 set(CMAKE_VERBOSE_MAKEFILE, 1)
-
-if(POLICY CMP0054)
-  cmake_policy(SET CMP0054 NEW)
-endif()
 
 file(GLOB essentials_SRC "include/essentials/*.hpp"
 "include/essentials/compatibility/*.hpp"

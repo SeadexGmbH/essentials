@@ -1,6 +1,14 @@
 # Change log
 All notable changes to this project are documented in this file.
 
+##[2.1.1]
+
+### Changed
+- minimum CMake version set to 3.8
+- removed policy CMP0054 declaration as CMake 3.8 is used
+- no default SHARED library generation
+- minor documentation style update
+
 ##[2.1.0]
 
 ### Changed

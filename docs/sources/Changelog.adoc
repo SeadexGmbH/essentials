@@ -3,6 +3,17 @@
 
 All notable changes to this project are documented on this page. 
 
+
+==== [2.1.1]
+
+===== Changed
+
+- minimum CMake version set to 3.8
+- removed policy CMP0054 declaration as CMake 3.8 is used
+- no default SHARED library generation
+- minor documentation style update
+
+
 ==== [2.0.0]
 
 The library is now licensed under the MIT license.

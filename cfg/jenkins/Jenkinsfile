@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        VERSION = '2.1.0'
+        VERSION = '2.1.1'
         SOFTWARE_VERSION = "${VERSION}-${env.BUILD_NUMBER}"
         SOFTWARE_VERSION_STR = "v${SOFTWARE_VERSION}"
         VERSION_W_BUILD = "${VERSION}.${env.BUILD_NUMBER}"
@@ -78,7 +78,7 @@ pipeline {
                                 }
 
                                 dir("${env.WORKSPACE}/cmaked") {
-                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Debug -DESS_BUILD_UNIT_TESTS=ON'
+                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Debug -DESS_BUILD_UNIT_TESTS=ON -DBUILD_SHARED_LIBS=ON'
                                     sh 'cmake --build --preset conan-debug'
                                 }
 
@@ -96,7 +96,7 @@ pipeline {
                                 }
 
                                 dir("${env.WORKSPACE}/cmake") {
-                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Release -DESS_BUILD_UNIT_TESTS=ON'
+                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Release -DESS_BUILD_UNIT_TESTS=ON -DBUILD_SHARED_LIBS=ON'
                                     sh 'cmake --build --preset conan-release'
                                 }
 

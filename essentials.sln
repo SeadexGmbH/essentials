@@ -31,7 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMakeHelpers", "CMakeHelper
 		CMakeHelpers\addYasmineOptions.cmake = CMakeHelpers\addYasmineOptions.cmake
 		CMakeHelpers\functions.cmake = CMakeHelpers\functions.cmake
 		CMakeHelpers\functionsAddCompilerFlags.cmake = CMakeHelpers\functionsAddCompilerFlags.cmake
-		CMakeHelpers\setVariables.cmake = CMakeHelpers\setVariables.cmake
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "essentials_unit_tests", "essentials_unit_tests", "{63218938-B7EC-4913-9B3B-CEAE1F2A925B}"

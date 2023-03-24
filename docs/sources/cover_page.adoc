@@ -1,5 +1,5 @@
 = essentials library
-:libversion: 2.1.0
+:libversion: 2.1.1
 {libversion}
 :author: Seadex GmbH
 :email: info@seadex.de

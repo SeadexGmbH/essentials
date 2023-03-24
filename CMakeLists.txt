@@ -1,12 +1,7 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.8)
 
 project(essentials_all)
 
-if(POLICY CMP0054)
-  cmake_policy(SET CMP0054 NEW)
-endif()
-
-include(./CMakeHelpers/setVariables.cmake)
 include(./CMakeHelpers/functions.cmake)
 include(./CMakeHelpers/functionsAddCompilerFlags.cmake)
 
@@ -18,7 +13,7 @@ endif()
 
 add_compile_options(-DFMT_HEADER_ONLY)
 
-if( (NOT "${FMT_LIB_INCLUDE}" STREQUAL "") AND (NOT "${SPDLOG_LIB}" STREQUAL "") AND (NOT "${SPDLOG_LIB_INCLUDE}" STREQUAL "") AND (NOT "${SPDLOG_LIB}" STREQUAL ""))
+if( (NOT "${FMT_LIB_INCLUDE}" STREQUAL "") AND (NOT "${FMT_LIB}" STREQUAL "") AND (NOT "${SPDLOG_LIB_INCLUDE}" STREQUAL "") AND (NOT "${SPDLOG_LIB}" STREQUAL ""))
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D \"SPDLOG_FMT_EXTERNAL\"")
 	message(STATUS "libfmt or spdlog paths provided by user.")
 else()
