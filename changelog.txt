@@ -1,6 +1,13 @@
 # Change log
 All notable changes to this project are documented in this file.
 
+
+##[2.1.2]
+
+### Changed
+- build support for Clang and Apple-Clang
+
+
 ##[2.1.1]
 
 ### Changed
@@ -8,6 +15,7 @@ All notable changes to this project are documented in this file.
 - removed policy CMP0054 declaration as CMake 3.8 is used
 - no default SHARED library generation
 - minor documentation style update
+
 
 ##[2.1.0]
 

@@ -4,6 +4,12 @@
 All notable changes to this project are documented on this page. 
 
 
+==== [2.1.2]
+
+===== Changed
+
+- build support for Clang and Apple-Clang
+
 ==== [2.1.1]
 
 ===== Changed

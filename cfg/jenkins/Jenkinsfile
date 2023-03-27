@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        VERSION = '2.1.1'
+        VERSION = '2.1.2'
         SOFTWARE_VERSION = "${VERSION}-${env.BUILD_NUMBER}"
         SOFTWARE_VERSION_STR = "v${SOFTWARE_VERSION}"
         VERSION_W_BUILD = "${VERSION}.${env.BUILD_NUMBER}"
@@ -198,6 +198,64 @@ pipeline {
                         }
                     }
                 }
+
+                stage('Linux Clang') {
+                    agent {
+                        docker {
+                            registryUrl "${env.SX_DOCKER_REGISTRY}"
+                            image 'sx_debian_clang_conan:latest'
+                            args '-u 0:0 -v /mnt/user/development/ci_ssh:/root/.ssh'
+                        }
+                    }
+
+                    stages {
+                        stage('Build (Clang)') {
+                            steps {
+                                echo '[Clang] Building...'
+
+                                dir("${env.WORKSPACE}/cfg/jenkins/linux") {
+                                    sh 'chmod +x clang_build.sh'
+                                    sh './clang_build.sh'
+                                }
+
+                                dir("${env.WORKSPACE}/cmake/bin") {
+                                    stash includes: '**', name: 'linux_clang_release_bin'
+                                }
+
+                                dir("${env.WORKSPACE}/cmake/lib") {
+                                    stash includes: '**', name: 'linux_clang_release_lib'
+                                }
+
+                                dir("${env.WORKSPACE}/cmaked/bin") {
+                                    stash includes: '**', name: 'linux_clang_debug_bin'
+                                }
+
+                                dir("${env.WORKSPACE}/cmaked/lib") {
+                                    stash includes: '**', name: 'linux_clang_debug_lib'
+                                }
+                            }
+                        }
+
+                        stage('Test (Clang)') {
+                            steps {
+                                echo 'Testing..'
+                                dir("${env.WORKSPACE}/cmake/bin") {
+                                    script {
+                                        try {
+                                            sh './essentials_unit_tests --log_format=JUNIT --report_level=no --gtest_output=xml:./../../reports/unit_test_results.xml'
+                                        } catch (Exception e) {
+                                            echo 'essentials_unit_tests did not run!!!'
+                                        }
+                                    }
+                                }
+
+                                dir("${env.WORKSPACE}/reports") {
+                                    junit 'unit_test_results.xml'
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -294,6 +352,8 @@ pipeline {
                                 dir("${env.WORKSPACE}") {
                                         bat 'mkdir cmake'
                                         bat 'mkdir cmaked'
+                                        bat 'mkdir clang-cmake'
+                                        bat 'mkdir clang-cmaked'
                                 }
 
                                 dir("${env.WORKSPACE}\\cmake") {
@@ -304,6 +364,16 @@ pipeline {
                                 dir("${env.WORKSPACE}\\cmaked") {
                                         unstash 'linux_debug_bin'
                                         unstash 'linux_debug_lib'
+                                }
+
+                                dir("${env.WORKSPACE}\\clang-cmake") {
+                                        unstash 'linux_clang_release_bin'
+                                        unstash 'linux_clang_release_lib'
+                                }
+
+                                dir("${env.WORKSPACE}\\clang-cmaked") {
+                                        unstash 'linux_clang_debug_bin'
+                                        unstash 'linux_clang_debug_lib'
                                 }
 
                                 dir("${env.WORKSPACE}/cfg/jenkins/windows") {
