@@ -11,15 +11,13 @@ if(DEFINED CPP_VERSION AND "${CPP_VERSION}" STREQUAL "03")
 	message(SEND_ERROR "Error: C++03 is no longer supported!")
 endif()
 
-add_compile_options(-DFMT_HEADER_ONLY)
+set(CMAKE_CXX_FLAGS "${} -D \"FMT_HEADER_ONLY\"  -D \"SPDLOG_FMT_EXTERNAL\"")
 
 if( (NOT "${FMT_LIB_INCLUDE}" STREQUAL "") AND (NOT "${FMT_LIB}" STREQUAL "") AND (NOT "${SPDLOG_LIB_INCLUDE}" STREQUAL "") AND (NOT "${SPDLOG_LIB}" STREQUAL ""))
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D \"SPDLOG_FMT_EXTERNAL\"")
 	message(STATUS "libfmt or spdlog paths provided by user.")
 else()
 	if(EXISTS "${PROJECT_SOURCE_DIR}/conan_toolchain.cmake")
-		message(STATUS "Using Conan.")		
-		set(SPDLOG_FMT_EXTERNAL ON CACHE BOOL "")
+		message(STATUS "Using Conan.")
 	else()
 		message(STATUS "Conan CMake file not present. Conan is not used.")
 	endif()
@@ -33,13 +31,13 @@ if(ESS_BUILD_UNIT_TESTS AND EXISTS "${PROJECT_SOURCE_DIR}/essentials_unit_tests"
 endif()
 
 
-if(EXISTS "${PROJECT_SOURCE_DIR}/examples")
+if(ESS_BUILD_EXAMPLES AND EXISTS "${PROJECT_SOURCE_DIR}/examples")
 	message(STATUS "Build examples.")
 	add_subdirectory(examples)
 endif()
 
 
-if(EXISTS "${PROJECT_SOURCE_DIR}/bug_reproductions")
+if(ESS_BUILD_EXAMPLES AND EXISTS "${PROJECT_SOURCE_DIR}/bug_reproductions")
 	message(STATUS "Build bug reproductions projects.")
 	add_subdirectory(bug_reproductions)
 endif()

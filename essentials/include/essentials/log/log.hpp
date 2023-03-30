@@ -6,10 +6,6 @@
 #ifndef LOG_6A83F606_1620_11EC_9621_0242AC130002
 #define LOG_6A83F606_1620_11EC_9621_0242AC130002
 
-
-#include <spdlog/spdlog.h>
-#include <spdlog/fmt/bin_to_hex.h>
-
 #include "essentials/log/logger_manager.hpp"
 #include "essentials/log/logger.hpp"
 #include "essentials/preprocessor/macro_helpers.hpp"

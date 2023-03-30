@@ -6,6 +6,7 @@ def main():
     # Get the available options for c++
     cmd = "sudo update-alternatives --list c++"
     output = subprocess.check_output(cmd.split()).decode().strip()
+    print(output)
     options = output.split('\n')
 
     # Find the index of the option for clang++

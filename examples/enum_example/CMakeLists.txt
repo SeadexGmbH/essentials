@@ -33,7 +33,6 @@ if( NOT "${FMT_LIB_INCLUDE}" STREQUAL "" AND NOT "${FMT_LIB}" STREQUAL "" AND NO
 	include_directories("${SPDLOG_LIB_INCLUDE}")
 	add_library_for_linking(link_libraries_list "${FMT_LIB}")
 	add_library_for_linking(link_libraries_list "${SPDLOG_LIB}")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D \"SPDLOG_FMT_EXTERNAL\"")
 else()
 	include_directories("${CMAKE_INCLUDE_PATH}")	
 endif()

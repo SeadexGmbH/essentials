@@ -5,4 +5,5 @@ fmt/9.1.0
 
 
 [options]
+fmt*:header_only=True
 spdlog*:header_only=True

@@ -10,8 +10,6 @@
 #include <map>
 #include <mutex>
 
-#include <spdlog/spdlog.h>
-#include <fmt/format.h>
 
 #include "essentials/non_copyable.hpp"
 #include "essentials/log/log_sink_type.hpp"

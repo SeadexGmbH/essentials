@@ -8,7 +8,8 @@ pipeline {
     }
 
     environment {
-        VERSION = '2.1.2'
+        VERSION = '2.1.3'
+        VERSION_DEPLOY = "2_1_3_${env.BUILD_NUMBER}"
         SOFTWARE_VERSION = "${VERSION}-${env.BUILD_NUMBER}"
         SOFTWARE_VERSION_STR = "v${SOFTWARE_VERSION}"
         VERSION_W_BUILD = "${VERSION}.${env.BUILD_NUMBER}"
@@ -78,7 +79,7 @@ pipeline {
                                 }
 
                                 dir("${env.WORKSPACE}/cmaked") {
-                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Debug -DESS_BUILD_UNIT_TESTS=ON -DBUILD_SHARED_LIBS=ON'
+                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Debug -DESS_BUILD_UNIT_TESTS=ON -DESS_BUILD_EXAMPLES=ON -DBUILD_SHARED_LIBS=ON'
                                     sh 'cmake --build --preset conan-debug'
                                 }
 
@@ -96,7 +97,7 @@ pipeline {
                                 }
 
                                 dir("${env.WORKSPACE}/cmake") {
-                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Release -DESS_BUILD_UNIT_TESTS=ON -DBUILD_SHARED_LIBS=ON'
+                                    sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release -DESS_BUILD_UNIT_TESTS=ON -DESS_BUILD_EXAMPLES=ON -DBUILD_SHARED_LIBS=ON'
                                     sh 'cmake --build --preset conan-release'
                                 }
 
@@ -283,12 +284,14 @@ pipeline {
                     steps {
                         echo 'Building...'
 
-                        dir("${env.WORKSPACE}") {
-                            bat 'cmake . -G \"Visual Studio 16 2019\" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DESS_BUILD_UNIT_TESTS=ON'
-
+                        dir("${env.WORKSPACE}/win-cmaked") {
+                            bat 'cmake .. -G \"Visual Studio 16 2019\" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DESS_BUILD_UNIT_TESTS=ON -DESS_BUILD_EXAMPLES=ON -DCMAKE_BUILD_TYPE=Debug'
                             echo 'Build Debug version'
                             bat 'cmake --build --preset conan-debug'
+                        }
 
+                        dir("${env.WORKSPACE}/win-cmake") {
+                            bat 'cmake .. -G \"Visual Studio 16 2019\" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DESS_BUILD_UNIT_TESTS=ON -DESS_BUILD_EXAMPLES=ON -DCMAKE_BUILD_TYPE=Release'
                             echo 'Build Release version'
                             bat 'cmake --build --preset conan-release'
                         }
@@ -303,10 +306,10 @@ pipeline {
                             bat 'mkdir reports'
                         }
 
-                        dir("${env.WORKSPACE}/bin/Release") {
+                        dir("${env.WORKSPACE}/win-cmake/bin/Release") {
                             script {
                                 try {
-                                    bat 'essentials_unit_tests.exe --log_format=JUNIT --report_level=no --gtest_output=xml:./../../reports/unit_test_results.xml'
+                                    bat 'essentials_unit_tests.exe --log_format=JUNIT --report_level=no --gtest_output=xml:./../../../reports/unit_test_results.xml'
                                 } catch (Exception e) {
                                     echo 'essentials_unit_tests did not run!!!'
                                 }
@@ -377,7 +380,7 @@ pipeline {
                                 }
 
                                 dir("${env.WORKSPACE}/cfg/jenkins/windows") {
-                                    bat "essentials_deploy.bat ${VERSION_W_BUILD} ${env.ARTIFACTORY_USER} ${env.ARTIFACTORY_PASS} ${env.ARTIFACTORY_ESSENTIALS}"
+                                    bat "essentials_deploy.bat ${VERSION_DEPLOY} ${env.ARTIFACTORY_USER} ${env.ARTIFACTORY_PASS} ${env.ARTIFACTORY_ESSENTIALS}"
                                 }
                             } else {
                                 echo 'No RELEASE, NO deployment.'
@@ -396,8 +399,7 @@ pipeline {
                     args '-u 0:0 -v /mnt/user/development/ci_ssh:/root/.ssh'
                 }
             }
-
-            steps {
+          steps {
                 script {
                     if (params.RELEASE_BUILD == true) {
                         echo 'Tagging ${SOFTWARE_VERSION_STR}'

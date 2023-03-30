@@ -1,11 +1,6 @@
 ==== CMake
 
-The build with CMake is currently tested for Linux (Debian, gcc) and Windows (Microsoft Visual Studio). 
-
-The following were used: 
-
-* Debian 11
-* gcc 10.2.1
+The build with CMake is currently tested for Linux (Debian, gcc, clang) and Windows (Microsoft Visual Studio). 
 
 The _CMakeFileLists.txt_ files are located in the solution directory, the essentials project directory, the examples directory, and the directory of the unit tests project. 
 
@@ -24,7 +19,7 @@ conan install . -g CMakeToolchain --profile=release --build=missing -of cmake
 
 cd cmake
 
-cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DCMAKE_BUILD_TYPE=Release -DESS_BUILD_UNIT_TESTS=ON
+cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release -DESS_BUILD_UNIT_TESTS=ON -DESS_BUILD_EXAMPLES=ON
 
 cmake --build --preset conan-release
 ----
@@ -40,7 +35,7 @@ In a terminal go to the directory into which you extracted essentials and run th
 ----
 conan install . -g CMakeToolchain --profile=release --build=missing
 
-cmake . -G "Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DSPDLOG_FMT_EXTERNAL=ON -DESS_BUILD_UNIT_TESTS=ON
+cmake . -G "Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DESS_BUILD_UNIT_TESTS=ON -DESS_BUILD_EXAMPLES=ON
 
 cmake --build --preset conan-release
 ----
@@ -72,7 +67,9 @@ The essentials build can be customized using the following options:
 |===
 |Definition| Description
 
-|ESS_BUILD_UNIT_TESTS=[OFF]| When ESS_BUILD_UNIT_TESTS is defined, the unit tests project will be built as well. By default it is not defined and therefore, not built.
+|ESS_BUILD_EXAMPLES=[OFF]|When ESS_BUILD_EXAMPLES is defined, the examples and the bug reproduction project will be built as well. By default, it is not defined and therefore, not built.
+
+|ESS_BUILD_UNIT_TESTS=[OFF]| When ESS_BUILD_UNIT_TESTS is defined, the unit tests project will be built as well. By default, it is not defined and therefore, not built.
 
 |FMT_LIB_INCLUDE=[VALUE]
 

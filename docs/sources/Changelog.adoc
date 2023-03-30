@@ -4,6 +4,15 @@
 All notable changes to this project are documented on this page. 
 
 
+==== [2.1.3]
+
+===== Changed
+
+- use FMT_HEADER_ONLY as default in CMake
+- use SPDLOG_FMT_EXTERNAL as default in CMake
+- the flag ESS_BUILD_EXAMPLES must be specified in the CMake command to build the examples and the bug reproduction projects
+
+
 ==== [2.1.2]
 
 ===== Changed
@@ -30,7 +39,7 @@ The library is now licensed under the MIT license.
 - bytes helper functions
 - string conversion functions
 - helper functions for file to string and file to bytes and vice versa
-- data type wrapper macro
+- datatype wrapper macro
 
 ===== Changed
 - removed support for C++03
